@@ -3,50 +3,462 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>PawBridge — Información legal</title>
+<title>PawBridge — Cuidado de mascotas en Alicante</title>
+<meta name="description" content="PawBridge conecta a dueños de mascotas de Alicante con cuidadores profesionales independientes. Paseos, guardería, visitas a domicilio y acompañamiento veterinario.">
+<meta property="og:title" content="PawBridge — Care. Connected.">
+<meta property="og:description" content="Cuidado de mascotas en Alicante. Buscamos cuidadores profesionales.">
+<meta property="og:locale" content="es_ES">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  :root { --pine:#0D1B2A; --ink:#1a1a1a; --grey:#666; --line:#e5e5e5; }
-  body { margin:0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
-         color:var(--ink); background:#F5F7FA; display:flex; min-height:100vh;
-         align-items:center; justify-content:center; padding:24px; }
-  .card { background:#fff; border-radius:16px; padding:40px 36px; max-width:520px; width:100%;
-          box-shadow:0 2px 20px rgba(0,0,0,.06); }
-  .brand { font-size:13px; font-weight:800; letter-spacing:2px; color:var(--pine);
-           text-transform:uppercase; }
-  h1 { font-size:26px; margin:10px 0 6px; }
-  .sub { color:var(--grey); font-size:14.5px; line-height:1.6; margin-bottom:28px; }
-  a.doc { display:block; padding:16px 18px; border:1px solid var(--line); border-radius:10px;
-          text-decoration:none; color:var(--ink); margin-bottom:12px; transition:.15s; }
-  a.doc:hover { border-color:#00B894; background:#F5F7FA; }
-  .doc-title { font-weight:700; font-size:15.5px; color:var(--pine); }
-  .doc-desc { font-size:13px; color:var(--grey); margin-top:3px; }
-  footer { margin-top:24px; padding-top:18px; border-top:1px solid var(--line);
-           font-size:13px; color:var(--grey); line-height:1.6; }
+  :root{
+    --navy:#0D1B2A; --navy-light:#1B2F45; --teal:#00B894; --teal-text:#00806A;
+    --mint:#A7F3D0; --paper:#F5F7FA; --grey:#6B7280; --line:#E3E8EF;
+    --warn-bg:#FEF3C7; --warn-ink:#8A5300;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;font-family:Poppins,-apple-system,BlinkMacSystemFont,sans-serif;
+       color:var(--navy);line-height:1.65;background:#fff;}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 24px;}
+  a{color:var(--teal-text);}
+
+  header{background:var(--navy);color:#fff;padding:20px 0;}
+  .nav{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;}
+  .logo{font-weight:700;font-size:20px;letter-spacing:-.3px;}
+  .logo span{color:var(--teal);}
+  .tagline{font-size:11.5px;color:var(--mint);letter-spacing:1.5px;text-transform:uppercase;}
+  .nav a{color:#fff;text-decoration:none;font-size:14.5px;font-weight:500;margin-left:22px;}
+  .nav a:hover{color:var(--mint);}
+
+  .hero{background:var(--navy);color:#fff;padding:56px 0 72px;}
+  .hero h1{font-size:42px;line-height:1.2;margin:0 0 16px;font-weight:700;letter-spacing:-1px;}
+  .hero p{font-size:18px;color:#C7D3DF;max-width:600px;margin:0 0 28px;}
+  .btn{display:inline-block;background:var(--teal);color:var(--navy);text-decoration:none;
+       font-weight:600;font-size:15.5px;padding:14px 28px;border-radius:12px;border:0;cursor:pointer;}
+  .btn:hover{background:var(--mint);}
+  .btn-ghost{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.35);margin-left:10px;}
+  .btn-ghost:hover{background:rgba(255,255,255,.08);}
+
+  section{padding:64px 0;}
+  h2{font-size:28px;margin:0 0 10px;font-weight:700;letter-spacing:-.5px;}
+  .lead{color:var(--grey);font-size:16px;margin:0 0 36px;max-width:620px;}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;}
+  .card{border:1px solid var(--line);border-radius:14px;padding:22px;}
+  .card h3{margin:0 0 6px;font-size:16.5px;font-weight:600;}
+  .card p{margin:0;color:var(--grey);font-size:14.5px;}
+  .price{display:block;margin-top:12px;font-weight:700;font-size:15px;color:var(--teal-text);}
+
+  .alt{background:var(--paper);}
+  .steps{counter-reset:s;display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:22px;}
+  .step{position:relative;padding-top:44px;}
+  .step::before{counter-increment:s;content:counter(s);position:absolute;top:0;left:0;
+    width:32px;height:32px;border-radius:50%;background:var(--teal);color:var(--navy);
+    font-weight:700;font-size:15px;display:flex;align-items:center;justify-content:center;}
+  .step h3{margin:0 0 6px;font-size:16px;font-weight:600;}
+  .step p{margin:0;color:var(--grey);font-size:14.5px;}
+
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:start;}
+  @media(max-width:820px){.split{grid-template-columns:1fr;gap:32px;}
+    .hero h1{font-size:32px;} .btn-ghost{margin-left:0;margin-top:10px;}}
+
+  ul.check{list-style:none;padding:0;margin:0 0 26px;}
+  ul.check li{position:relative;padding-left:26px;margin-bottom:11px;font-size:15px;}
+  ul.check li::before{content:"";position:absolute;left:0;top:8px;width:8px;height:8px;
+    border-radius:50%;background:var(--teal);}
+
+  form{border:1px solid var(--line);border-radius:16px;padding:26px;background:#fff;}
+  label{display:block;font-size:13px;font-weight:600;margin:16px 0 6px;}
+  label:first-of-type{margin-top:0;}
+  input[type=text],input[type=email],input[type=tel],select,textarea{
+    width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:10px;
+    font-family:inherit;font-size:15px;color:var(--navy);background:#fff;}
+  input:focus,select:focus,textarea:focus{outline:none;border-color:var(--teal);}
+  textarea{min-height:88px;resize:vertical;}
+  .services{display:flex;flex-wrap:wrap;gap:8px;}
+  .chip{border:1px solid var(--line);border-radius:20px;padding:8px 15px;font-size:14px;cursor:pointer;user-select:none;}
+  .chip input{position:absolute;opacity:0;pointer-events:none;}
+  .chip.on{background:var(--mint);border-color:var(--teal);font-weight:600;}
+  .hp{position:absolute;left:-9999px;}
+  .submit{width:100%;margin-top:22px;padding:15px;}
+  .note{font-size:12.5px;color:var(--grey);margin-top:14px;line-height:1.55;}
+  .msg{margin-top:16px;padding:14px 16px;border-radius:10px;font-size:14.5px;display:none;}
+  .msg.ok{background:var(--mint);color:#065F46;display:block;}
+  .msg.err{background:#FEE2E2;color:#991B1B;display:block;}
+
+  table.compare{width:100%;border-collapse:collapse;font-size:15px;max-width:760px;}
+  table.compare th,table.compare td{text-align:left;padding:13px 14px;border-bottom:1px solid var(--line);}
+  table.compare th{font-weight:600;font-size:14px;color:var(--grey);}
+  table.compare th:nth-child(2){color:var(--teal-text);}
+  table.compare td:first-child{color:var(--grey);font-size:14.5px;}
+  table.compare td.good{font-weight:600;}
+
+  .faq{max-width:760px;}
+  details{border:1px solid var(--line);border-radius:12px;padding:0;margin-bottom:10px;background:#fff;}
+  summary{cursor:pointer;padding:16px 18px;font-weight:600;font-size:15.5px;list-style:none;}
+  summary::-webkit-details-marker{display:none;}
+  summary::after{content:"+";float:right;color:var(--teal);font-weight:700;font-size:19px;line-height:1;}
+  details[open] summary::after{content:"–";}
+  details p{margin:0 18px 14px;color:var(--grey);font-size:14.5px;}
+  details p:first-of-type{margin-top:-2px;}
+
+  footer{background:var(--navy);color:#C7D3DF;padding:44px 0 32px;font-size:14px;}
+  footer a{color:#fff;text-decoration:none;}
+  footer a:hover{color:var(--mint);}
+  .fgrid{display:flex;justify-content:space-between;gap:28px;flex-wrap:wrap;margin-bottom:26px;}
+  .fbot{border-top:1px solid rgba(255,255,255,.12);padding-top:18px;font-size:12.5px;color:#8FA3B8;}
 </style>
 </head>
 <body>
-<div class="card">
-  <div class="brand">PawBridge</div>
-  <h1>Información legal</h1>
-  <p class="sub">
-    Cuidado de animales de compañía en Alicante — paseos, guardería, visitas a
-    domicilio y acompañamiento veterinario.
-  </p>
 
-  <a class="doc" href="privacidad.html">
-    <div class="doc-title">Política de Privacidad</div>
-    <div class="doc-desc">Qué datos tratamos, con quién los compartimos y tus derechos</div>
-  </a>
+<header>
+  <div class="wrap nav">
+    <div>
+      <div class="logo">Paw<span>Bridge</span></div>
+      <div class="tagline">Care. Connected.</div>
+    </div>
+    <nav>
+      <a href="#servicios">Servicios</a>
+      <a href="#como">Cómo funciona</a>
+      <a href="#porque">Por qué PawBridge</a>
+      <a href="#faq">Preguntas</a>
+      <a href="#cuidadores">Trabaja con nosotros</a>
+    </nav>
+  </div>
+</header>
 
-  <a class="doc" href="terminos.html">
-    <div class="doc-title">Términos y Condiciones</div>
-    <div class="doc-desc">Cómo funcionan las reservas, los pagos y las cancelaciones</div>
-  </a>
-
-  <footer>
-    contact@pawbridge.es · +34 644 66 86 21<br>
-    Alicante, España
-  </footer>
+<div class="hero">
+  <div class="wrap">
+    <h1>Cuidado de mascotas<br>en Alicante</h1>
+    <p>Conectamos a dueños de mascotas con cuidadores profesionales independientes
+       de la ciudad. Reserva en unos minutos, paga de forma segura, sigue tu servicio.</p>
+    <a class="btn" href="#cuidadores">Quiero ser cuidador</a>
+    <a class="btn btn-ghost" href="#como">Cómo funciona</a>
+  </div>
 </div>
+
+<section id="servicios">
+  <div class="wrap">
+    <h2>Servicios</h2>
+    <p class="lead">Cada cuidador fija sus propias tarifas. Los precios mostrados son
+       orientativos e incluyen el IVA.</p>
+    <div class="grid">
+      <div class="card">
+        <h3>Paseos</h3>
+        <p>Paseos individuales adaptados a la rutina de tu perro.</p>
+        <span class="price">desde 13,20 € · 1 h</span>
+      </div>
+      <div class="card">
+        <h3>Visitas a domicilio</h3>
+        <p>Comida, agua, arenero, medicación y compañía en tu casa.</p>
+        <span class="price">desde 16,50 € · 30 min</span>
+      </div>
+      <div class="card">
+        <h3>Guardería y alojamiento</h3>
+        <p>Tu mascota cuidada durante el día o mientras viajas.</p>
+        <span class="price">desde 19,80 € · por día</span>
+      </div>
+      <div class="card">
+        <h3>Acompañamiento veterinario</h3>
+        <p>Recogida, traslado y acompañamiento a la consulta.</p>
+        <span class="price">desde 33,00 € · 2 h</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="como" class="alt">
+  <div class="wrap">
+    <h2>Cómo funciona</h2>
+    <p class="lead">Sin llamadas, sin esperas, sin sorpresas en el precio.</p>
+    <div class="steps">
+      <div class="step">
+        <h3>Eliges servicio y horario</h3>
+        <p>Solo se muestran las franjas en las que hay un cuidador realmente libre.</p>
+      </div>
+      <div class="step">
+        <h3>Un cuidador acepta</h3>
+        <p>Tiene 10 minutos para responder. Si no puede, la solicitud pasa a otro profesional.</p>
+      </div>
+      <div class="step">
+        <h3>Pagas solo entonces</h3>
+        <p>El enlace de pago se genera después de la aceptación. Nunca pagas por un servicio sin confirmar.</p>
+      </div>
+      <div class="step">
+        <h3>El cuidador realiza el servicio</h3>
+        <p>Recibes el detalle al finalizar y puedes valorar la experiencia.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="porque">
+  <div class="wrap">
+    <h2>Por qué PawBridge</h2>
+    <p class="lead">Somos una plataforma pequeña y local. Eso tiene ventajas concretas,
+       y también límites que preferimos decir en voz alta.</p>
+
+    <table class="compare">
+      <tr>
+        <th></th>
+        <th>PawBridge</th>
+        <th>Grandes plataformas</th>
+      </tr>
+      <tr>
+        <td>Comisión al cuidador</td>
+        <td class="good">10 %</td>
+        <td>15 %</td>
+      </tr>
+      <tr>
+        <td>Tarifa de servicio al cliente</td>
+        <td class="good">10 %</td>
+        <td>15 %</td>
+      </tr>
+      <tr>
+        <td>Momento del cobro</td>
+        <td class="good">Después de que un cuidador acepte</td>
+        <td>Al reservar</td>
+      </tr>
+      <tr>
+        <td>Cobertura</td>
+        <td>Solo Alicante y alrededores</td>
+        <td class="good">Toda España</td>
+      </tr>
+      <tr>
+        <td>Número de cuidadores</td>
+        <td>Estamos empezando</td>
+        <td class="good">Miles</td>
+      </tr>
+      <tr>
+        <td>Atención</td>
+        <td class="good">Directa, en el día, en español</td>
+        <td>Formulario de soporte</td>
+      </tr>
+    </table>
+
+    <p class="note" style="margin-top:18px;max-width:640px">
+      Sobre una hora de paseo a 12 €, el cuidador se queda 10,80 € con nosotros
+      frente a 10,20 € en una gran plataforma, y el cliente paga 13,20 € en lugar
+      de 13,80 €. Menos comisión para nosotros, mejor reparto para ambos.
+    </p>
+  </div>
+</section>
+
+<section id="faq" class="alt">
+  <div class="wrap">
+    <h2>Preguntas frecuentes</h2>
+    <p class="lead">Las que nos hacen de verdad, respondidas sin rodeos.</p>
+
+    <div class="faq">
+      <details>
+        <summary>¿Cómo elegís a los cuidadores?</summary>
+        <p>Cada candidatura pasa por una entrevista presencial. Exigimos alta como
+        autónomo, seguro de responsabilidad civil profesional en vigor, DNI o NIE, y
+        comprobamos dos referencias por teléfono.</p>
+        <p>Somos claros sobre lo que <em>no</em> hacemos todavía: no realizamos
+        comprobación de antecedentes penales de forma sistemática. Lo indicamos
+        porque preferimos que lo sepas a que lo supongas.</p>
+      </details>
+
+      <details>
+        <summary>¿Qué pasa si mi mascota se pone enferma o se hace daño?</summary>
+        <p>El cuidador debe avisarte de inmediato por la aplicación y, si hay urgencia
+        vital, acudir al veterinario. No puede administrar ninguna medicación que no
+        hayas autorizado expresamente.</p>
+        <p>Cada cuidador tiene su propio seguro de responsabilidad civil profesional,
+        que cubre los daños derivados de su actividad.</p>
+      </details>
+
+      <details>
+        <summary>¿Quién tiene las llaves de mi casa?</summary>
+        <p>Únicamente el cuidador que realiza el servicio, y solo durante el tiempo
+        necesario. Se compromete por contrato a usarlas exclusivamente para la
+        prestación y a no acceder a estancias ajenas al servicio.</p>
+      </details>
+
+      <details>
+        <summary>¿Cuándo se me cobra?</summary>
+        <p>Solo después de que un cuidador acepte tu solicitud. Mientras esperas
+        respuesta no se te cobra nada, y si nadie está disponible la solicitud se
+        cancela sin coste.</p>
+      </details>
+
+      <details>
+        <summary>¿Puedo cancelar?</summary>
+        <p>Sí. Antes del pago, libremente. Después: reembolso del 100 % si cancelas
+        con más de 24 h de antelación, del 50 % entre 24 h y 2 h antes. Si cancela el
+        cuidador, se te devuelve el importe íntegro.</p>
+      </details>
+
+      <details>
+        <summary>¿Existe ya la aplicación?</summary>
+        <p>Está desarrollada y en fase de pruebas. Todavía no está publicada en la
+        App Store — estamos reuniendo a los primeros cuidadores antes de abrirla al
+        público. Escríbenos si quieres que te avisemos.</p>
+      </details>
+
+      <details>
+        <summary>¿Cubrís toda la provincia?</summary>
+        <p>De momento solo Alicante ciudad, Sant Joan y San Vicente del Raspeig.
+        Preferimos cubrir bien una zona pequeña antes que mal una grande.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section id="cuidadores">
+  <div class="wrap split">
+    <div>
+      <h2>Trabaja con nosotros</h2>
+      <p class="lead">Buscamos a los primeros cuidadores profesionales de Alicante.
+         Si cuidas de animales por oficio, esto te interesa.</p>
+
+      <ul class="check">
+        <li><strong>Solo 10 % de comisión.</strong> Las grandes plataformas cobran un 15 % al cuidador y otro 15 % al cliente.</li>
+        <li><strong>Tarifa Fundador: 0 % durante 6 meses</strong> para los 8 primeros cuidadores.</li>
+        <li><strong>Tú fijas tus tarifas</strong> y tus horarios de trabajo.</li>
+        <li><strong>Aceptas o rechazas libremente.</strong> Rechazar no tiene ninguna consecuencia.</li>
+        <li><strong>Sin exclusividad.</strong> Puedes seguir trabajando en otras plataformas.</li>
+        <li><strong>Cobro automático</strong> tras cada servicio, mediante Stripe.</li>
+      </ul>
+
+      <div style="background:var(--warn-bg);color:var(--warn-ink);padding:15px 17px;border-radius:11px;font-size:14px;">
+        <strong>Requisitos</strong><br>
+        Alta como autónomo (o disposición a darte de alta), seguro de responsabilidad
+        civil profesional, experiencia demostrable con animales y residencia en
+        Alicante o alrededores.
+      </div>
+    </div>
+
+    <form id="f" novalidate>
+      <label for="name">Nombre y apellidos *</label>
+      <input id="name" name="name" type="text" required autocomplete="name">
+
+      <label for="email">Correo electrónico *</label>
+      <input id="email" name="email" type="email" required autocomplete="email">
+
+      <label for="phone">Teléfono</label>
+      <input id="phone" name="phone" type="tel" autocomplete="tel">
+
+      <label for="city">Ciudad o zona</label>
+      <input id="city" name="city" type="text" placeholder="Alicante, San Vicente…">
+
+      <label>Servicios que quieres ofrecer *</label>
+      <div class="services" id="services">
+        <label class="chip"><input type="checkbox" value="promenade">Paseos</label>
+        <label class="chip"><input type="checkbox" value="visite">Visitas a domicilio</label>
+        <label class="chip"><input type="checkbox" value="garde">Guardería</label>
+        <label class="chip"><input type="checkbox" value="veterinaire">Acompañamiento veterinario</label>
+      </div>
+
+      <label for="isAutonomo">¿Estás dado de alta como autónomo?</label>
+      <select id="isAutonomo" name="isAutonomo">
+        <option value="">Selecciona…</option>
+        <option value="si">Sí, ya estoy de alta</option>
+        <option value="dispuesto">No, pero estoy dispuesto/a</option>
+        <option value="no">No</option>
+      </select>
+
+      <label for="experience">Tu experiencia con animales</label>
+      <textarea id="experience" name="experience" placeholder="Profesional, en protectora, como voluntario/a…"></textarea>
+
+      <label class="hp" aria-hidden="true">No rellenar
+        <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+      </label>
+
+      <button class="btn submit" type="submit" id="send">Enviar candidatura</button>
+      <div class="msg" id="msg" role="status"></div>
+
+      <p class="note">Al enviar aceptas que tratemos tus datos para gestionar tu
+        candidatura, conforme a nuestra
+        <a href="privacidad.html">política de privacidad</a>.
+        Te respondemos en 48 horas.</p>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="fgrid">
+      <div>
+        <div class="logo" style="color:#fff">Paw<span>Bridge</span></div>
+        <div class="tagline">Care. Connected.</div>
+      </div>
+      <div>
+        <a href="mailto:contact@pawbridge.es">contact@pawbridge.es</a><br>
+        <a href="https://wa.me/34644668621">+34 644 66 86 21</a><br>
+        Alicante, España
+      </div>
+      <div>
+        <a href="privacidad.html">Política de Privacidad</a><br>
+        <a href="terminos.html">Términos y Condiciones</a>
+      </div>
+    </div>
+    <div class="fbot">
+      PawBridge es una plataforma de intermediación. Los servicios de cuidado
+      animal los prestan profesionales autónomos independientes.
+    </div>
+  </div>
+</footer>
+
+<script>
+  var API = "https://pawbridge-backend-server.onrender.com";
+
+  document.getElementById("services").addEventListener("change", function (e) {
+    if (e.target.type === "checkbox") e.target.closest(".chip").classList.toggle("on", e.target.checked);
+  });
+
+  document.getElementById("f").addEventListener("submit", async function (e) {
+    e.preventDefault();
+    var btn = document.getElementById("send");
+    var msg = document.getElementById("msg");
+    msg.className = "msg";
+
+    var services = [].slice.call(document.querySelectorAll("#services input:checked")).map(function (c) { return c.value; });
+    if (services.length === 0) {
+      msg.className = "msg err";
+      msg.textContent = "Selecciona al menos un servicio.";
+      return;
+    }
+
+    btn.disabled = true;
+    btn.textContent = "Enviando…";
+
+    try {
+      var res = await fetch(API + "/api/applications", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: document.getElementById("name").value,
+          email: document.getElementById("email").value,
+          phone: document.getElementById("phone").value,
+          city: document.getElementById("city").value,
+          services: services,
+          isAutonomo: document.getElementById("isAutonomo").value,
+          experience: document.getElementById("experience").value,
+          website: document.getElementById("website").value
+        })
+      });
+      var data = await res.json();
+
+      if (res.ok) {
+        msg.className = "msg ok";
+        msg.textContent = data.message || "Hemos recibido tu candidatura.";
+        document.getElementById("f").reset();
+        [].forEach.call(document.querySelectorAll(".chip"), function (c) { c.classList.remove("on"); });
+      } else {
+        msg.className = "msg err";
+        msg.textContent = data.error || "No hemos podido enviar tu candidatura.";
+      }
+    } catch (err) {
+      msg.className = "msg err";
+      msg.textContent = "Sin conexión con el servidor. Escríbenos a contact@pawbridge.es.";
+    } finally {
+      btn.disabled = false;
+      btn.textContent = "Enviar candidatura";
+    }
+  });
+</script>
 </body>
 </html>
