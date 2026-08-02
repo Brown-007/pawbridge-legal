@@ -64,7 +64,11 @@ header{background:var(--navy);color:#fff;padding:20px 0;}
  *
  * Le fondu vers le bas raccorde l'image à la section suivante, ce qui
  * évite la coupure nette d'une photo posée telle quelle. */
-.hero.img{position:relative;background-color:var(--navy);background-size:cover;
+/* `no-repeat` explicite : sans lui, si `background-size` venait à ne pas
+   s'appliquer — feuille de style en cache, règle écrasée — l'image se
+   répéterait en mosaïque au lieu d'être simplement mal cadrée. */
+.hero.img{position:relative;background-color:var(--navy);
+          background-size:cover;background-repeat:no-repeat;
           background-position:center 38%;overflow:hidden;}
 .hero.img::before{content:"";position:absolute;inset:0;
   background:linear-gradient(100deg, rgba(13,27,42,.94) 0%, rgba(13,27,42,.82) 42%,
