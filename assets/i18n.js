@@ -26,8 +26,12 @@ var API = "https://pawbridge-backend-server.onrender.com";
 
 var EN = {
   /* --- Navigation, commune à toutes les pages --------------------- */
-  "nav.services":"Services","nav.how":"How it works","nav.why":"Why PawBridge",
-  "nav.faq":"FAQ","nav.work":"Work with us","nav.waitlist":"Notify me","nav.home":"Home",
+  // Libellés courts, et de longueur comparable dans les deux langues :
+  // en espagnol, « Por qué PawBridge » et « Trabaja con nosotros »
+  // faisaient déborder le menu, qui passait alors à la ligne — la barre
+  // n'avait pas la même allure selon la langue.
+  "nav.services":"Services","nav.how":"How it works","nav.why":"Why us",
+  "nav.faq":"FAQ","nav.work":"Join us","nav.waitlist":"Notify me","nav.home":"Home",
 
   /* --- Accueil ---------------------------------------------------- */
   "hero.title":"Pet care<br>in Alicante",
