@@ -95,6 +95,11 @@
   .chip input{position:absolute;opacity:0;pointer-events:none;}
   .chip.on{background:var(--mint);border-color:var(--teal);font-weight:600;}
   .hp{position:absolute;left:-9999px;}
+  /* Case de consentement : le RGPD exige un acte positif, jamais une case
+     pré-cochée. D'où un vrai checkbox, aligné avec son texte. */
+  label.consent{display:flex;gap:10px;align-items:flex-start;margin-top:18px;
+                font-weight:400;font-size:13px;color:var(--grey);line-height:1.5;cursor:pointer;}
+  label.consent input{width:17px;height:17px;flex:0 0 auto;margin-top:1px;accent-color:var(--teal);}
   .submit{width:100%;margin-top:22px;padding:15px;}
   .note{font-size:12.5px;color:var(--grey);margin-top:14px;line-height:1.55;}
   .msg{margin-top:16px;padding:14px 16px;border-radius:10px;font-size:14.5px;display:none;}
@@ -136,6 +141,7 @@
     <nav>
       <a href="#servicios" data-i18n="nav.services">Servicios</a>
       <a href="#como" data-i18n="nav.how">Cómo funciona</a>
+      <a href="#avisame" data-i18n="nav.waitlist">Avísame</a>
       <a href="#porque" data-i18n="nav.why">Por qué PawBridge</a>
       <a href="#faq" data-i18n="nav.faq">Preguntas</a>
       <a href="#cuidadores" data-i18n="nav.work">Trabaja con nosotros</a>
@@ -152,8 +158,11 @@
     <h1 data-i18n-html="hero.title">Cuidado de mascotas<br>en Alicante</h1>
     <p data-i18n="hero.lead">Conectamos a dueños de mascotas con cuidadores profesionales independientes
        de la ciudad. Reserva en unos minutos, paga de forma segura, sigue tu servicio.</p>
-    <a class="btn" href="#cuidadores" data-i18n="hero.cta1">Quiero ser cuidador</a>
-    <a class="btn btn-ghost" href="#como" data-i18n="hero.cta2">Cómo funciona</a>
+    <!-- Deux publics, deux boutons. Avant, le seul appel à l'action
+         s'adressait aux cuidadores : un propriétaire d'animal lisait
+         toute la page et repartait sans rien pouvoir faire. -->
+    <a class="btn" href="#avisame" data-i18n="hero.cta1">Tengo una mascota</a>
+    <a class="btn btn-ghost" href="#cuidadores" data-i18n="hero.cta2">Quiero ser cuidador</a>
   </div>
 </div>
 
@@ -212,7 +221,67 @@
   </div>
 </section>
 
-<section id="porque">
+<section id="avisame">
+  <div class="wrap split">
+    <div>
+      <h2 data-i18n="wait.title">¿Tienes una mascota?</h2>
+      <p class="lead" data-i18n="wait.lead">Todavía estamos reuniendo a nuestros primeros cuidadores.
+         Déjanos tu correo y te avisamos en cuanto haya alguien disponible en tu zona.</p>
+
+      <ul class="check">
+        <li data-i18n-html="wait.b1"><strong>Sin compromiso.</strong> Solo un aviso cuando abramos en tu barrio.</li>
+        <li data-i18n-html="wait.b2"><strong>Sin publicidad.</strong> No usamos tu correo para nada más.</li>
+        <li data-i18n-html="wait.b3"><strong>Te das de baja cuando quieras</strong>, escribiendo a contact@pawbridge.es.</li>
+      </ul>
+
+      <p class="note" data-i18n="wait.honest">
+        Somos claros: no sabemos aún cuándo abriremos en cada zona. Depende de
+        encontrar cuidadores profesionales cerca de ti. Cuantas más personas
+        esperen en un barrio, antes buscamos allí.
+      </p>
+    </div>
+
+    <form id="w" novalidate>
+      <label for="wemail" data-i18n="wait.email">Correo electrónico *</label>
+      <input id="wemail" name="wemail" type="email" required autocomplete="email">
+
+      <label for="wcity" data-i18n="wait.city">Tu zona o barrio</label>
+      <input id="wcity" name="wcity" type="text" placeholder="Alicante centro, San Vicente…">
+
+      <label for="wanimal" data-i18n="wait.animal">¿Qué animal tienes?</label>
+      <select id="wanimal" name="wanimal">
+        <option value="" data-i18n="wait.select">Selecciona…</option>
+        <option value="perro" data-i18n="wait.dog">Perro</option>
+        <option value="gato" data-i18n="wait.cat">Gato</option>
+        <option value="otro" data-i18n="wait.other">Otro</option>
+      </select>
+
+      <label data-i18n="wait.services">¿Qué servicio te interesa?</label>
+      <div class="services" id="wservices">
+        <label class="chip"><input type="checkbox" value="promenade"><span data-i18n="form.svc1">Paseos</span></label>
+        <label class="chip"><input type="checkbox" value="visite"><span data-i18n="form.svc2">Visitas a domicilio</span></label>
+        <label class="chip"><input type="checkbox" value="garde"><span data-i18n="form.svc3">Guardería</span></label>
+        <label class="chip"><input type="checkbox" value="veterinaire"><span data-i18n="form.svc4">Acompañamiento veterinario</span></label>
+      </div>
+
+      <label class="consent" for="wconsent">
+        <input type="checkbox" id="wconsent">
+        <span data-i18n-html="wait.consent">Acepto que PawBridge guarde mi correo para avisarme cuando
+        el servicio esté disponible en mi zona, conforme a la
+        <a href="privacidad.html">política de privacidad</a>.</span>
+      </label>
+
+      <label class="hp" aria-hidden="true">No rellenar
+        <input type="text" id="wwebsite" name="wwebsite" tabindex="-1" autocomplete="off">
+      </label>
+
+      <button class="btn submit" type="submit" id="wsend" data-i18n="wait.submit">Avísame</button>
+      <div class="msg" id="wmsg" role="status"></div>
+    </form>
+  </div>
+</section>
+
+<section id="porque" class="alt">
   <div class="wrap">
     <h2 data-i18n="why.title">Por qué PawBridge</h2>
     <p class="lead" data-i18n="why.lead">Somos una plataforma pequeña y local. Eso tiene ventajas concretas,
@@ -264,7 +333,7 @@
   </div>
 </section>
 
-<section id="faq" class="alt">
+<section id="faq">
   <div class="wrap">
     <h2 data-i18n="faq.title">Preguntas frecuentes</h2>
     <p class="lead" data-i18n="faq.lead">Las que nos hacen de verdad, respondidas sin rodeos.</p>
@@ -333,7 +402,7 @@
   </div>
 </section>
 
-<section id="cuidadores">
+<section id="cuidadores" class="alt">
   <div class="wrap split">
     <div>
       <h2 data-i18n="work.title">Trabaja con nosotros</h2>
@@ -450,11 +519,29 @@
 
   var EN = {
     "nav.services":"Services","nav.how":"How it works","nav.why":"Why PawBridge",
-    "nav.faq":"FAQ","nav.work":"Work with us",
+    "nav.faq":"FAQ","nav.work":"Work with us","nav.waitlist":"Notify me",
 
     "hero.title":"Pet care<br>in Alicante",
     "hero.lead":"We connect pet owners with independent professional sitters in the city. Book in a few minutes, pay securely, follow your service.",
-    "hero.cta1":"I want to be a sitter","hero.cta2":"How it works",
+    "hero.cta1":"I have a pet","hero.cta2":"I want to be a sitter",
+
+    "wait.title":"Do you have a pet?",
+    "wait.lead":"We're still gathering our first sitters. Leave us your email and we'll let you know as soon as someone is available in your area.",
+    "wait.b1":"<strong>No commitment.</strong> Just one message when we open in your neighbourhood.",
+    "wait.b2":"<strong>No marketing.</strong> We don't use your email for anything else.",
+    "wait.b3":"<strong>Unsubscribe whenever you want</strong>, by writing to contact@pawbridge.es.",
+    "wait.honest":"To be straight with you: we don't yet know when we'll open in each area. It depends on finding professional sitters near you. The more people waiting in a neighbourhood, the sooner we look there.",
+    "wait.email":"Email address *",
+    "wait.city":"Your area or neighbourhood",
+    "wait.cityPlaceholder":"Alicante centre, San Vicente…",
+    "wait.animal":"What pet do you have?",
+    "wait.select":"Select…","wait.dog":"Dog","wait.cat":"Cat","wait.other":"Other",
+    "wait.services":"Which service are you interested in?",
+    "wait.consent":"I agree that PawBridge stores my email to let me know when the service is available in my area, in line with the <a href=\"privacidad.html\">privacy policy</a>.",
+    "wait.submit":"Notify me",
+    "js.wConsent":"Please tick the box so we can store your email.",
+    "js.wOk":"We'll let you know as soon as sitters are available in your area.",
+    "js.wFailed":"We couldn't add you to the list.",
 
     "services.title":"Services",
     "services.lead":"Each sitter sets their own rates. Prices shown are indicative and include VAT.",
@@ -543,6 +630,10 @@
   };
 
   var ES_JS = {
+    "wait.cityPlaceholder":"Alicante centro, San Vicente…",
+    "js.wConsent":"Marca la casilla para que podamos guardar tu correo.",
+    "js.wOk":"Te avisaremos en cuanto haya cuidadores disponibles en tu zona.",
+    "js.wFailed":"No hemos podido añadirte a la lista.",
     "js.pickService":"Selecciona al menos un servicio.",
     "js.sending":"Enviando…",
     "js.ok":"Hemos recibido tu candidatura.",
@@ -585,6 +676,7 @@
 
     document.getElementById("city").placeholder = t("form.cityPlaceholder");
     document.getElementById("experience").placeholder = t("form.expPlaceholder");
+    document.getElementById("wcity").placeholder = t("wait.cityPlaceholder");
 
     document.documentElement.lang = lang;
     document.title = lang === "en" ? EN["title"] : ES_TITLE;
@@ -629,8 +721,70 @@
   // FORMULAIRE DE CANDIDATURE
   // ==================================================================
 
-  document.getElementById("services").addEventListener("change", function (e) {
-    if (e.target.type === "checkbox") e.target.closest(".chip").classList.toggle("on", e.target.checked);
+  // Les puces se colorent au clic, dans les deux formulaires.
+  ["services", "wservices"].forEach(function (id) {
+    document.getElementById(id).addEventListener("change", function (e) {
+      if (e.target.type === "checkbox") e.target.closest(".chip").classList.toggle("on", e.target.checked);
+    });
+  });
+
+  // ==================================================================
+  // LISTE D'ATTENTE CLIENT
+  // ==================================================================
+
+  document.getElementById("w").addEventListener("submit", async function (e) {
+    e.preventDefault();
+    var btn = document.getElementById("wsend");
+    var msg = document.getElementById("wmsg");
+    msg.className = "msg";
+
+    // Le consentement doit être un acte positif : on bloque tant que la
+    // case n'est pas cochée, plutôt que d'enregistrer et de s'expliquer
+    // après. C'est aussi ce que refuse le serveur de son côté.
+    if (!document.getElementById("wconsent").checked) {
+      msg.className = "msg err";
+      msg.textContent = t("js.wConsent");
+      return;
+    }
+
+    var services = [].slice.call(document.querySelectorAll("#wservices input:checked"))
+      .map(function (c) { return c.value; });
+
+    btn.disabled = true;
+    btn.textContent = t("js.sending");
+
+    try {
+      var res = await fetch(API + "/api/waitlist", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: document.getElementById("wemail").value,
+          city: document.getElementById("wcity").value,
+          animal: document.getElementById("wanimal").value,
+          services: services,
+          lang: lang,
+          consent: true,
+          website: document.getElementById("wwebsite").value
+        })
+      });
+      var data = await res.json();
+
+      if (res.ok) {
+        msg.className = "msg ok";
+        msg.textContent = lang === "en" ? t("js.wOk") : (data.message || t("js.wOk"));
+        document.getElementById("w").reset();
+        [].forEach.call(document.querySelectorAll("#wservices .chip"), function (c) { c.classList.remove("on"); });
+      } else {
+        msg.className = "msg err";
+        msg.textContent = (lang === "es" && data.error) ? data.error : t("js.wFailed");
+      }
+    } catch (err) {
+      msg.className = "msg err";
+      msg.textContent = t("js.offline");
+    } finally {
+      btn.disabled = false;
+      btn.textContent = t("wait.submit");
+    }
   });
 
   document.getElementById("f").addEventListener("submit", async function (e) {
