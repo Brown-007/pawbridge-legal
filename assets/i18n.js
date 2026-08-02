@@ -55,6 +55,7 @@ var EN = {
   "step3.text":"The payment link is generated after acceptance. You never pay for an unconfirmed service.",
   "step4.title":"The sitter does the job",
   "step4.text":"You get the details when it's finished and you can rate the experience.",
+  "how.caption":"Illustrative image. The handover happens at your door, at the time you chose.",
 
   "why.title":"Why PawBridge",
   "why.lead":"We're a small, local platform. That brings concrete advantages, and also limits we'd rather state out loud.",
