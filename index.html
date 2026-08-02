@@ -8,6 +8,8 @@
 <meta property="og:title" content="PawBridge — Care. Connected.">
 <meta property="og:description" content="Cuidado de mascotas en Alicante. Buscamos cuidadores profesionales.">
 <meta property="og:locale" content="es_ES">
+<link rel="alternate" hreflang="es" href="https://pawbridge.es/">
+<link rel="alternate" hreflang="en" href="https://pawbridge.es/?lang=en">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -30,6 +32,16 @@
   .tagline{font-size:11.5px;color:var(--mint);letter-spacing:1.5px;text-transform:uppercase;}
   .nav a{color:#fff;text-decoration:none;font-size:14.5px;font-weight:500;margin-left:22px;}
   .nav a:hover{color:var(--mint);}
+
+  /* Sélecteur de langue. Discret, mais toujours visible : la détection
+     automatique se trompe souvent — un Espagnol dont le téléphone est en
+     anglais doit pouvoir revenir à sa langue en un clic. */
+  .lang{display:inline-flex;border:1px solid rgba(255,255,255,.28);border-radius:20px;
+        overflow:hidden;margin-left:22px;vertical-align:middle;}
+  .lang button{background:transparent;border:0;color:#C7D3DF;font-family:inherit;
+        font-size:12.5px;font-weight:600;padding:5px 12px;cursor:pointer;letter-spacing:.5px;}
+  .lang button[aria-pressed=true]{background:var(--teal);color:var(--navy);}
+  .lang button:hover:not([aria-pressed=true]){color:#fff;}
 
   .hero{background:var(--navy);color:#fff;padding:56px 0 72px;}
   .hero h1{font-size:42px;line-height:1.2;margin:0 0 16px;font-weight:700;letter-spacing:-1px;}
@@ -61,7 +73,9 @@
 
   .split{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:start;}
   @media(max-width:820px){.split{grid-template-columns:1fr;gap:32px;}
-    .hero h1{font-size:32px;} .btn-ghost{margin-left:0;margin-top:10px;}}
+    .hero h1{font-size:32px;} .btn-ghost{margin-left:0;margin-top:10px;}
+    .nav nav{display:flex;flex-wrap:wrap;gap:4px;}
+    .nav a{margin-left:0;margin-right:16px;} .lang{margin-left:0;margin-top:10px;}}
 
   ul.check{list-style:none;padding:0;margin:0 0 26px;}
   ul.check li{position:relative;padding-left:26px;margin-bottom:11px;font-size:15px;}
@@ -108,6 +122,7 @@
   footer a:hover{color:var(--mint);}
   .fgrid{display:flex;justify-content:space-between;gap:28px;flex-wrap:wrap;margin-bottom:26px;}
   .fbot{border-top:1px solid rgba(255,255,255,.12);padding-top:18px;font-size:12.5px;color:#8FA3B8;}
+  .legal-note{margin-top:10px;font-size:12px;color:#8FA3B8;}
 </style>
 </head>
 <body>
@@ -119,50 +134,54 @@
       <div class="tagline">Care. Connected.</div>
     </div>
     <nav>
-      <a href="#servicios">Servicios</a>
-      <a href="#como">Cómo funciona</a>
-      <a href="#porque">Por qué PawBridge</a>
-      <a href="#faq">Preguntas</a>
-      <a href="#cuidadores">Trabaja con nosotros</a>
+      <a href="#servicios" data-i18n="nav.services">Servicios</a>
+      <a href="#como" data-i18n="nav.how">Cómo funciona</a>
+      <a href="#porque" data-i18n="nav.why">Por qué PawBridge</a>
+      <a href="#faq" data-i18n="nav.faq">Preguntas</a>
+      <a href="#cuidadores" data-i18n="nav.work">Trabaja con nosotros</a>
+      <span class="lang" role="group" aria-label="Idioma / Language">
+        <button type="button" data-lang="es" aria-pressed="true">ES</button>
+        <button type="button" data-lang="en" aria-pressed="false">EN</button>
+      </span>
     </nav>
   </div>
 </header>
 
 <div class="hero">
   <div class="wrap">
-    <h1>Cuidado de mascotas<br>en Alicante</h1>
-    <p>Conectamos a dueños de mascotas con cuidadores profesionales independientes
+    <h1 data-i18n-html="hero.title">Cuidado de mascotas<br>en Alicante</h1>
+    <p data-i18n="hero.lead">Conectamos a dueños de mascotas con cuidadores profesionales independientes
        de la ciudad. Reserva en unos minutos, paga de forma segura, sigue tu servicio.</p>
-    <a class="btn" href="#cuidadores">Quiero ser cuidador</a>
-    <a class="btn btn-ghost" href="#como">Cómo funciona</a>
+    <a class="btn" href="#cuidadores" data-i18n="hero.cta1">Quiero ser cuidador</a>
+    <a class="btn btn-ghost" href="#como" data-i18n="hero.cta2">Cómo funciona</a>
   </div>
 </div>
 
 <section id="servicios">
   <div class="wrap">
-    <h2>Servicios</h2>
-    <p class="lead">Cada cuidador fija sus propias tarifas. Los precios mostrados son
+    <h2 data-i18n="services.title">Servicios</h2>
+    <p class="lead" data-i18n="services.lead">Cada cuidador fija sus propias tarifas. Los precios mostrados son
        orientativos e incluyen el IVA.</p>
     <div class="grid">
       <div class="card">
-        <h3>Paseos</h3>
-        <p>Paseos individuales adaptados a la rutina de tu perro.</p>
-        <span class="price">desde 13,20 € · 1 h</span>
+        <h3 data-i18n="svc1.title">Paseos</h3>
+        <p data-i18n="svc1.text">Paseos individuales adaptados a la rutina de tu perro.</p>
+        <span class="price" data-i18n="svc1.price">desde 13,20 € · 1 h</span>
       </div>
       <div class="card">
-        <h3>Visitas a domicilio</h3>
-        <p>Comida, agua, arenero, medicación y compañía en tu casa.</p>
-        <span class="price">desde 16,50 € · 30 min</span>
+        <h3 data-i18n="svc2.title">Visitas a domicilio</h3>
+        <p data-i18n="svc2.text">Comida, agua, arenero, medicación y compañía en tu casa.</p>
+        <span class="price" data-i18n="svc2.price">desde 16,50 € · 30 min</span>
       </div>
       <div class="card">
-        <h3>Guardería y alojamiento</h3>
-        <p>Tu mascota cuidada durante el día o mientras viajas.</p>
-        <span class="price">desde 19,80 € · por día</span>
+        <h3 data-i18n="svc3.title">Guardería y alojamiento</h3>
+        <p data-i18n="svc3.text">Tu mascota cuidada durante el día o mientras viajas.</p>
+        <span class="price" data-i18n="svc3.price">desde 19,80 € · por día</span>
       </div>
       <div class="card">
-        <h3>Acompañamiento veterinario</h3>
-        <p>Recogida, traslado y acompañamiento a la consulta.</p>
-        <span class="price">desde 33,00 € · 2 h</span>
+        <h3 data-i18n="svc4.title">Acompañamiento veterinario</h3>
+        <p data-i18n="svc4.text">Recogida, traslado y acompañamiento a la consulta.</p>
+        <span class="price" data-i18n="svc4.price">desde 33,00 € · 2 h</span>
       </div>
     </div>
   </div>
@@ -170,24 +189,24 @@
 
 <section id="como" class="alt">
   <div class="wrap">
-    <h2>Cómo funciona</h2>
-    <p class="lead">Sin llamadas, sin esperas, sin sorpresas en el precio.</p>
+    <h2 data-i18n="how.title">Cómo funciona</h2>
+    <p class="lead" data-i18n="how.lead">Sin llamadas, sin esperas, sin sorpresas en el precio.</p>
     <div class="steps">
       <div class="step">
-        <h3>Eliges servicio y horario</h3>
-        <p>Solo se muestran las franjas en las que hay un cuidador realmente libre.</p>
+        <h3 data-i18n="step1.title">Eliges servicio y horario</h3>
+        <p data-i18n="step1.text">Solo se muestran las franjas en las que hay un cuidador realmente libre.</p>
       </div>
       <div class="step">
-        <h3>Un cuidador acepta</h3>
-        <p>Tiene 10 minutos para responder. Si no puede, la solicitud pasa a otro profesional.</p>
+        <h3 data-i18n="step2.title">Un cuidador acepta</h3>
+        <p data-i18n="step2.text">Tiene 10 minutos para responder. Si no puede, la solicitud pasa a otro profesional.</p>
       </div>
       <div class="step">
-        <h3>Pagas solo entonces</h3>
-        <p>El enlace de pago se genera después de la aceptación. Nunca pagas por un servicio sin confirmar.</p>
+        <h3 data-i18n="step3.title">Pagas solo entonces</h3>
+        <p data-i18n="step3.text">El enlace de pago se genera después de la aceptación. Nunca pagas por un servicio sin confirmar.</p>
       </div>
       <div class="step">
-        <h3>El cuidador realiza el servicio</h3>
-        <p>Recibes el detalle al finalizar y puedes valorar la experiencia.</p>
+        <h3 data-i18n="step4.title">El cuidador realiza el servicio</h3>
+        <p data-i18n="step4.text">Recibes el detalle al finalizar y puedes valorar la experiencia.</p>
       </div>
     </div>
   </div>
@@ -195,49 +214,49 @@
 
 <section id="porque">
   <div class="wrap">
-    <h2>Por qué PawBridge</h2>
-    <p class="lead">Somos una plataforma pequeña y local. Eso tiene ventajas concretas,
+    <h2 data-i18n="why.title">Por qué PawBridge</h2>
+    <p class="lead" data-i18n="why.lead">Somos una plataforma pequeña y local. Eso tiene ventajas concretas,
        y también límites que preferimos decir en voz alta.</p>
 
     <table class="compare">
       <tr>
         <th></th>
         <th>PawBridge</th>
-        <th>Grandes plataformas</th>
+        <th data-i18n="why.them">Grandes plataformas</th>
       </tr>
       <tr>
-        <td>Comisión al cuidador</td>
+        <td data-i18n="why.r1">Comisión al cuidador</td>
         <td class="good">10 %</td>
         <td>15 %</td>
       </tr>
       <tr>
-        <td>Tarifa de servicio al cliente</td>
+        <td data-i18n="why.r2">Tarifa de servicio al cliente</td>
         <td class="good">10 %</td>
         <td>15 %</td>
       </tr>
       <tr>
-        <td>Momento del cobro</td>
-        <td class="good">Después de que un cuidador acepte</td>
-        <td>Al reservar</td>
+        <td data-i18n="why.r3">Momento del cobro</td>
+        <td class="good" data-i18n="why.r3a">Después de que un cuidador acepte</td>
+        <td data-i18n="why.r3b">Al reservar</td>
       </tr>
       <tr>
-        <td>Cobertura</td>
-        <td>Solo Alicante y alrededores</td>
-        <td class="good">Toda España</td>
+        <td data-i18n="why.r4">Cobertura</td>
+        <td data-i18n="why.r4a">Solo Alicante y alrededores</td>
+        <td class="good" data-i18n="why.r4b">Toda España</td>
       </tr>
       <tr>
-        <td>Número de cuidadores</td>
-        <td>Estamos empezando</td>
-        <td class="good">Miles</td>
+        <td data-i18n="why.r5">Número de cuidadores</td>
+        <td data-i18n="why.r5a">Estamos empezando</td>
+        <td class="good" data-i18n="why.r5b">Miles</td>
       </tr>
       <tr>
-        <td>Atención</td>
-        <td class="good">Directa, en el día, en español</td>
-        <td>Formulario de soporte</td>
+        <td data-i18n="why.r6">Atención</td>
+        <td class="good" data-i18n="why.r6a">Directa, en el día, en español</td>
+        <td data-i18n="why.r6b">Formulario de soporte</td>
       </tr>
     </table>
 
-    <p class="note" style="margin-top:18px;max-width:640px">
+    <p class="note" style="margin-top:18px;max-width:640px" data-i18n="why.note">
       Sobre una hora de paseo a 12 €, el cuidador se queda 10,80 € con nosotros
       frente a 10,20 € en una gran plataforma, y el cliente paga 13,20 € en lugar
       de 13,80 €. Menos comisión para nosotros, mejor reparto para ambos.
@@ -247,61 +266,68 @@
 
 <section id="faq" class="alt">
   <div class="wrap">
-    <h2>Preguntas frecuentes</h2>
-    <p class="lead">Las que nos hacen de verdad, respondidas sin rodeos.</p>
+    <h2 data-i18n="faq.title">Preguntas frecuentes</h2>
+    <p class="lead" data-i18n="faq.lead">Las que nos hacen de verdad, respondidas sin rodeos.</p>
 
     <div class="faq">
       <details>
-        <summary>¿Cómo elegís a los cuidadores?</summary>
-        <p>Cada candidatura pasa por una entrevista presencial. Exigimos alta como
+        <summary data-i18n="faq.q1">¿Cómo elegís a los cuidadores?</summary>
+        <p data-i18n="faq.a1a">Cada candidatura pasa por una entrevista presencial. Exigimos alta como
         autónomo, seguro de responsabilidad civil profesional en vigor, DNI o NIE, y
         comprobamos dos referencias por teléfono.</p>
-        <p>Somos claros sobre lo que <em>no</em> hacemos todavía: no realizamos
+        <p data-i18n-html="faq.a1b">Somos claros sobre lo que <em>no</em> hacemos todavía: no realizamos
         comprobación de antecedentes penales de forma sistemática. Lo indicamos
         porque preferimos que lo sepas a que lo supongas.</p>
       </details>
 
       <details>
-        <summary>¿Qué pasa si mi mascota se pone enferma o se hace daño?</summary>
-        <p>El cuidador debe avisarte de inmediato por la aplicación y, si hay urgencia
+        <summary data-i18n="faq.q2">¿Qué pasa si mi mascota se pone enferma o se hace daño?</summary>
+        <p data-i18n="faq.a2a">El cuidador debe avisarte de inmediato por la aplicación y, si hay urgencia
         vital, acudir al veterinario. No puede administrar ninguna medicación que no
         hayas autorizado expresamente.</p>
-        <p>Cada cuidador tiene su propio seguro de responsabilidad civil profesional,
+        <p data-i18n="faq.a2b">Cada cuidador tiene su propio seguro de responsabilidad civil profesional,
         que cubre los daños derivados de su actividad.</p>
       </details>
 
       <details>
-        <summary>¿Quién tiene las llaves de mi casa?</summary>
-        <p>Únicamente el cuidador que realiza el servicio, y solo durante el tiempo
+        <summary data-i18n="faq.q3">¿Quién tiene las llaves de mi casa?</summary>
+        <p data-i18n="faq.a3">Únicamente el cuidador que realiza el servicio, y solo durante el tiempo
         necesario. Se compromete por contrato a usarlas exclusivamente para la
         prestación y a no acceder a estancias ajenas al servicio.</p>
       </details>
 
       <details>
-        <summary>¿Cuándo se me cobra?</summary>
-        <p>Solo después de que un cuidador acepte tu solicitud. Mientras esperas
+        <summary data-i18n="faq.q4">¿Cuándo se me cobra?</summary>
+        <p data-i18n="faq.a4">Solo después de que un cuidador acepte tu solicitud. Mientras esperas
         respuesta no se te cobra nada, y si nadie está disponible la solicitud se
         cancela sin coste.</p>
       </details>
 
       <details>
-        <summary>¿Puedo cancelar?</summary>
-        <p>Sí. Antes del pago, libremente. Después: reembolso del 100 % si cancelas
+        <summary data-i18n="faq.q5">¿Puedo cancelar?</summary>
+        <p data-i18n="faq.a5">Sí. Antes del pago, libremente. Después: reembolso del 100 % si cancelas
         con más de 24 h de antelación, del 50 % entre 24 h y 2 h antes. Si cancela el
         cuidador, se te devuelve el importe íntegro.</p>
       </details>
 
       <details>
-        <summary>¿Existe ya la aplicación?</summary>
-        <p>Está desarrollada y en fase de pruebas. Todavía no está publicada en la
+        <summary data-i18n="faq.q6">¿Existe ya la aplicación?</summary>
+        <p data-i18n="faq.a6">Está desarrollada y en fase de pruebas. Todavía no está publicada en la
         App Store — estamos reuniendo a los primeros cuidadores antes de abrirla al
         público. Escríbenos si quieres que te avisemos.</p>
       </details>
 
       <details>
-        <summary>¿Cubrís toda la provincia?</summary>
-        <p>De momento solo Alicante ciudad, Sant Joan y San Vicente del Raspeig.
+        <summary data-i18n="faq.q7">¿Cubrís toda la provincia?</summary>
+        <p data-i18n="faq.a7">De momento solo Alicante ciudad, Sant Joan y San Vicente del Raspeig.
         Preferimos cubrir bien una zona pequeña antes que mal una grande.</p>
+      </details>
+
+      <details>
+        <summary data-i18n="faq.q8">¿En qué idioma funciona la aplicación?</summary>
+        <p data-i18n="faq.a8">La aplicación se adapta automáticamente al idioma de tu teléfono, en
+        español o en inglés. Muchos de nuestros clientes y cuidadores no son
+        españoles, y nos parecía lo mínimo.</p>
       </details>
     </div>
   </div>
@@ -310,20 +336,21 @@
 <section id="cuidadores">
   <div class="wrap split">
     <div>
-      <h2>Trabaja con nosotros</h2>
-      <p class="lead">Buscamos a los primeros cuidadores profesionales de Alicante.
+      <h2 data-i18n="work.title">Trabaja con nosotros</h2>
+      <p class="lead" data-i18n="work.lead">Buscamos a los primeros cuidadores profesionales de Alicante.
          Si cuidas de animales por oficio, esto te interesa.</p>
 
       <ul class="check">
-        <li><strong>Solo 10 % de comisión.</strong> Las grandes plataformas cobran un 15 % al cuidador y otro 15 % al cliente.</li>
-        <li><strong>Tarifa Fundador: 0 % durante 6 meses</strong> para los 8 primeros cuidadores.</li>
-        <li><strong>Tú fijas tus tarifas</strong> y tus horarios de trabajo.</li>
-        <li><strong>Aceptas o rechazas libremente.</strong> Rechazar no tiene ninguna consecuencia.</li>
-        <li><strong>Sin exclusividad.</strong> Puedes seguir trabajando en otras plataformas.</li>
-        <li><strong>Cobro automático</strong> tras cada servicio, mediante Stripe.</li>
+        <li data-i18n-html="work.b1"><strong>Solo 10 % de comisión.</strong> Las grandes plataformas cobran un 15 % al cuidador y otro 15 % al cliente.</li>
+        <li data-i18n-html="work.b2"><strong>Tarifa Fundador: 0 % durante 6 meses</strong> para los 8 primeros cuidadores.</li>
+        <li data-i18n-html="work.b3"><strong>Tú fijas tus tarifas</strong> y tus horarios de trabajo.</li>
+        <li data-i18n-html="work.b4"><strong>Aceptas o rechazas libremente.</strong> Rechazar no tiene ninguna consecuencia.</li>
+        <li data-i18n-html="work.b5"><strong>Sin exclusividad.</strong> Puedes seguir trabajando en otras plataformas.</li>
+        <li data-i18n-html="work.b6"><strong>Cobro automático</strong> tras cada servicio, mediante Stripe.</li>
       </ul>
 
-      <div style="background:var(--warn-bg);color:var(--warn-ink);padding:15px 17px;border-radius:11px;font-size:14px;">
+      <div style="background:var(--warn-bg);color:var(--warn-ink);padding:15px 17px;border-radius:11px;font-size:14px;"
+           data-i18n-html="work.req">
         <strong>Requisitos</strong><br>
         Alta como autónomo (o disposición a darte de alta), seguro de responsabilidad
         civil profesional, experiencia demostrable con animales y residencia en
@@ -332,45 +359,45 @@
     </div>
 
     <form id="f" novalidate>
-      <label for="name">Nombre y apellidos *</label>
+      <label for="name" data-i18n="form.name">Nombre y apellidos *</label>
       <input id="name" name="name" type="text" required autocomplete="name">
 
-      <label for="email">Correo electrónico *</label>
+      <label for="email" data-i18n="form.email">Correo electrónico *</label>
       <input id="email" name="email" type="email" required autocomplete="email">
 
-      <label for="phone">Teléfono</label>
+      <label for="phone" data-i18n="form.phone">Teléfono</label>
       <input id="phone" name="phone" type="tel" autocomplete="tel">
 
-      <label for="city">Ciudad o zona</label>
+      <label for="city" data-i18n="form.city">Ciudad o zona</label>
       <input id="city" name="city" type="text" placeholder="Alicante, San Vicente…">
 
-      <label>Servicios que quieres ofrecer *</label>
+      <label data-i18n="form.services">Servicios que quieres ofrecer *</label>
       <div class="services" id="services">
-        <label class="chip"><input type="checkbox" value="promenade">Paseos</label>
-        <label class="chip"><input type="checkbox" value="visite">Visitas a domicilio</label>
-        <label class="chip"><input type="checkbox" value="garde">Guardería</label>
-        <label class="chip"><input type="checkbox" value="veterinaire">Acompañamiento veterinario</label>
+        <label class="chip"><input type="checkbox" value="promenade"><span data-i18n="form.svc1">Paseos</span></label>
+        <label class="chip"><input type="checkbox" value="visite"><span data-i18n="form.svc2">Visitas a domicilio</span></label>
+        <label class="chip"><input type="checkbox" value="garde"><span data-i18n="form.svc3">Guardería</span></label>
+        <label class="chip"><input type="checkbox" value="veterinaire"><span data-i18n="form.svc4">Acompañamiento veterinario</span></label>
       </div>
 
-      <label for="isAutonomo">¿Estás dado de alta como autónomo?</label>
+      <label for="isAutonomo" data-i18n="form.autonomo">¿Estás dado de alta como autónomo?</label>
       <select id="isAutonomo" name="isAutonomo">
-        <option value="">Selecciona…</option>
-        <option value="si">Sí, ya estoy de alta</option>
-        <option value="dispuesto">No, pero estoy dispuesto/a</option>
-        <option value="no">No</option>
+        <option value="" data-i18n="form.select">Selecciona…</option>
+        <option value="si" data-i18n="form.opt1">Sí, ya estoy de alta</option>
+        <option value="dispuesto" data-i18n="form.opt2">No, pero estoy dispuesto/a</option>
+        <option value="no" data-i18n="form.opt3">No</option>
       </select>
 
-      <label for="experience">Tu experiencia con animales</label>
+      <label for="experience" data-i18n="form.experience">Tu experiencia con animales</label>
       <textarea id="experience" name="experience" placeholder="Profesional, en protectora, como voluntario/a…"></textarea>
 
       <label class="hp" aria-hidden="true">No rellenar
         <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
       </label>
 
-      <button class="btn submit" type="submit" id="send">Enviar candidatura</button>
+      <button class="btn submit" type="submit" id="send" data-i18n="form.submit">Enviar candidatura</button>
       <div class="msg" id="msg" role="status"></div>
 
-      <p class="note">Al enviar aceptas que tratemos tus datos para gestionar tu
+      <p class="note" data-i18n-html="form.note">Al enviar aceptas que tratemos tus datos para gestionar tu
         candidatura, conforme a nuestra
         <a href="privacidad.html">política de privacidad</a>.
         Te respondemos en 48 horas.</p>
@@ -388,14 +415,15 @@
       <div>
         <a href="mailto:contact@pawbridge.es">contact@pawbridge.es</a><br>
         <a href="https://wa.me/34644668621">+34 644 66 86 21</a><br>
-        Alicante, España
+        <span data-i18n="footer.city">Alicante, España</span>
       </div>
       <div>
-        <a href="privacidad.html">Política de Privacidad</a><br>
-        <a href="terminos.html">Términos y Condiciones</a>
+        <a href="privacidad.html" data-i18n="footer.privacy">Política de Privacidad</a><br>
+        <a href="terminos.html" data-i18n="footer.terms">Términos y Condiciones</a>
+        <div class="legal-note" data-i18n="footer.legalLang">Documentos legales disponibles únicamente en español.</div>
       </div>
     </div>
-    <div class="fbot">
+    <div class="fbot" data-i18n="footer.disclaimer">
       PawBridge es una plataforma de intermediación. Los servicios de cuidado
       animal los prestan profesionales autónomos independientes.
     </div>
@@ -404,6 +432,202 @@
 
 <script>
   var API = "https://pawbridge-backend-server.onrender.com";
+
+  // ==================================================================
+  // LANGUE
+  // ==================================================================
+  //
+  // L'espagnol est écrit en dur dans le HTML : sans JavaScript, ou si
+  // ce script échoue, la page reste lisible dans la langue du pays.
+  // L'anglais est appliqué par-dessus.
+  //
+  // Priorité : choix explicite mémorisé  >  ?lang=  >  langue du
+  // navigateur  >  espagnol.
+  //
+  // Les documents légaux restent en espagnol seul : c'est le droit
+  // espagnol qui s'applique, et deux versions poseraient la question de
+  // savoir laquelle fait foi en cas de litige.
+
+  var EN = {
+    "nav.services":"Services","nav.how":"How it works","nav.why":"Why PawBridge",
+    "nav.faq":"FAQ","nav.work":"Work with us",
+
+    "hero.title":"Pet care<br>in Alicante",
+    "hero.lead":"We connect pet owners with independent professional sitters in the city. Book in a few minutes, pay securely, follow your service.",
+    "hero.cta1":"I want to be a sitter","hero.cta2":"How it works",
+
+    "services.title":"Services",
+    "services.lead":"Each sitter sets their own rates. Prices shown are indicative and include VAT.",
+    "svc1.title":"Walks","svc1.text":"Individual walks adapted to your dog's routine.","svc1.price":"from €13.20 · 1 h",
+    "svc2.title":"Home visits","svc2.text":"Food, water, litter tray, medication and company at your place.","svc2.price":"from €16.50 · 30 min",
+    "svc3.title":"Day care and boarding","svc3.text":"Your pet looked after during the day or while you travel.","svc3.price":"from €19.80 · per day",
+    "svc4.title":"Vet accompaniment","svc4.text":"Pick-up, transport and accompaniment to the appointment.","svc4.price":"from €33.00 · 2 h",
+
+    "how.title":"How it works",
+    "how.lead":"No phone calls, no waiting, no surprises on the price.",
+    "step1.title":"You pick a service and a time",
+    "step1.text":"Only the slots where a sitter is genuinely free are shown.",
+    "step2.title":"A sitter accepts",
+    "step2.text":"They have 10 minutes to reply. If they can't, the request moves to another professional.",
+    "step3.title":"Only then do you pay",
+    "step3.text":"The payment link is generated after acceptance. You never pay for an unconfirmed service.",
+    "step4.title":"The sitter does the job",
+    "step4.text":"You get the details when it's finished and you can rate the experience.",
+
+    "why.title":"Why PawBridge",
+    "why.lead":"We're a small, local platform. That brings concrete advantages, and also limits we'd rather state out loud.",
+    "why.them":"Large platforms",
+    "why.r1":"Commission charged to the sitter",
+    "why.r2":"Service fee charged to the client",
+    "why.r3":"When you're charged","why.r3a":"After a sitter accepts","why.r3b":"When you book",
+    "why.r4":"Coverage","why.r4a":"Alicante and surroundings only","why.r4b":"All of Spain",
+    "why.r5":"Number of sitters","why.r5a":"We're just starting","why.r5b":"Thousands",
+    "why.r6":"Support","why.r6a":"Direct, same day, in Spanish or English","why.r6b":"Support form",
+    "why.note":"On a one-hour walk at €12, the sitter keeps €10.80 with us against €10.20 on a large platform, and the client pays €13.20 instead of €13.80. Less commission for us, a better split for both.",
+
+    "faq.title":"Frequently asked questions",
+    "faq.lead":"The ones people actually ask, answered straight.",
+    "faq.q1":"How do you choose your sitters?",
+    "faq.a1a":"Every application goes through a face-to-face interview. We require registration as self-employed (autónomo), a valid professional liability insurance policy, a DNI or NIE, and we check two references by phone.",
+    "faq.a1b":"We're clear about what we <em>don't</em> do yet: we do not run systematic criminal record checks. We say so because we'd rather you knew than assumed.",
+    "faq.q2":"What if my pet gets ill or hurt?",
+    "faq.a2a":"The sitter must tell you immediately through the app and, if it's life-threatening, go to the vet. They cannot give any medication you haven't expressly authorised.",
+    "faq.a2b":"Every sitter carries their own professional liability insurance, covering damage arising from their activity.",
+    "faq.q3":"Who has the keys to my home?",
+    "faq.a3":"Only the sitter carrying out the service, and only for as long as needed. They undertake by contract to use them solely for the service and not to enter rooms unrelated to it.",
+    "faq.q4":"When am I charged?",
+    "faq.a4":"Only after a sitter accepts your request. While you wait for a reply you're charged nothing, and if nobody is available the request is cancelled at no cost.",
+    "faq.q5":"Can I cancel?",
+    "faq.a5":"Yes. Before payment, freely. After: 100 % refund if you cancel more than 24 h ahead, 50 % between 24 h and 2 h before. If the sitter cancels, you're refunded in full.",
+    "faq.q6":"Does the app already exist?",
+    "faq.a6":"It's built and in testing. It isn't on the App Store yet — we're gathering our first sitters before opening it to the public. Write to us if you'd like to be notified.",
+    "faq.q7":"Do you cover the whole province?",
+    "faq.a7":"For now only Alicante city, Sant Joan and San Vicente del Raspeig. We'd rather cover a small area well than a large one badly.",
+    "faq.q8":"What language does the app work in?",
+    "faq.a8":"The app follows your phone's language automatically, in Spanish or English. Many of our clients and sitters aren't Spanish, and this felt like the least we could do.",
+
+    "work.title":"Work with us",
+    "work.lead":"We're looking for the first professional sitters in Alicante. If you care for animals for a living, this is for you.",
+    "work.b1":"<strong>Only 10 % commission.</strong> Large platforms charge 15 % to the sitter and another 15 % to the client.",
+    "work.b2":"<strong>Founder Rate: 0 % for 6 months</strong> for the first 8 sitters.",
+    "work.b3":"<strong>You set your own rates</strong> and your working hours.",
+    "work.b4":"<strong>You accept or decline freely.</strong> Declining has no consequence whatsoever.",
+    "work.b5":"<strong>No exclusivity.</strong> You can keep working on other platforms.",
+    "work.b6":"<strong>Automatic payout</strong> after each service, through Stripe.",
+    "work.req":"<strong>Requirements</strong><br>Registered as self-employed (autónomo), or willing to register; professional liability insurance; demonstrable experience with animals; and residence in Alicante or nearby.",
+
+    "form.name":"Full name *","form.email":"Email address *","form.phone":"Phone",
+    "form.city":"City or area","form.services":"Services you want to offer *",
+    "form.svc1":"Walks","form.svc2":"Home visits","form.svc3":"Day care","form.svc4":"Vet accompaniment",
+    "form.autonomo":"Are you registered as self-employed (autónomo)?",
+    "form.select":"Select…","form.opt1":"Yes, already registered",
+    "form.opt2":"Not yet, but I'm willing to","form.opt3":"No",
+    "form.experience":"Your experience with animals",
+    "form.submit":"Send application",
+    "form.note":"By sending this you agree that we process your data to handle your application, in line with our <a href=\"privacidad.html\">privacy policy</a>. We reply within 48 hours.",
+
+    "footer.city":"Alicante, Spain",
+    "footer.privacy":"Privacy Policy","footer.terms":"Terms and Conditions",
+    "footer.legalLang":"Legal documents available in Spanish only.",
+    "footer.disclaimer":"PawBridge is an intermediation platform. Pet care services are provided by independent self-employed professionals.",
+
+    // Textes générés par le script
+    "js.pickService":"Please select at least one service.",
+    "js.sending":"Sending…",
+    "js.ok":"We've received your application. We'll be in touch within 48 hours.",
+    "js.failed":"We couldn't send your application.",
+    "js.offline":"No connection to the server. Write to us at contact@pawbridge.es.",
+    "form.cityPlaceholder":"Alicante, San Vicente…",
+    "form.expPlaceholder":"Professional, at a shelter, as a volunteer…",
+    "title":"PawBridge — Pet care in Alicante"
+  };
+
+  var ES_JS = {
+    "js.pickService":"Selecciona al menos un servicio.",
+    "js.sending":"Enviando…",
+    "js.ok":"Hemos recibido tu candidatura.",
+    "js.failed":"No hemos podido enviar tu candidatura.",
+    "js.offline":"Sin conexión con el servidor. Escríbenos a contact@pawbridge.es.",
+    "form.cityPlaceholder":"Alicante, San Vicente…",
+    "form.expPlaceholder":"Profesional, en protectora, como voluntario/a…"
+  };
+
+  // Sauvegarde de la version espagnole avant toute substitution, pour
+  // pouvoir revenir en arrière sans recharger la page.
+  var ES = {};
+  document.querySelectorAll("[data-i18n]").forEach(function (el) {
+    ES[el.getAttribute("data-i18n")] = el.textContent;
+  });
+  document.querySelectorAll("[data-i18n-html]").forEach(function (el) {
+    ES[el.getAttribute("data-i18n-html")] = el.innerHTML;
+  });
+  var ES_TITLE = document.title;
+
+  var lang = "es";
+
+  function t(key) {
+    if (lang === "en") return EN[key] !== undefined ? EN[key] : (ES[key] || ES_JS[key] || key);
+    return ES[key] !== undefined ? ES[key] : (ES_JS[key] || key);
+  }
+
+  function apply(next) {
+    lang = next === "en" ? "en" : "es";
+    var dict = lang === "en" ? EN : ES;
+
+    document.querySelectorAll("[data-i18n]").forEach(function (el) {
+      var v = dict[el.getAttribute("data-i18n")];
+      if (v !== undefined) el.textContent = v;
+    });
+    document.querySelectorAll("[data-i18n-html]").forEach(function (el) {
+      var v = dict[el.getAttribute("data-i18n-html")];
+      if (v !== undefined) el.innerHTML = v;
+    });
+
+    document.getElementById("city").placeholder = t("form.cityPlaceholder");
+    document.getElementById("experience").placeholder = t("form.expPlaceholder");
+
+    document.documentElement.lang = lang;
+    document.title = lang === "en" ? EN["title"] : ES_TITLE;
+
+    document.querySelectorAll(".lang button").forEach(function (b) {
+      b.setAttribute("aria-pressed", String(b.dataset.lang === lang));
+    });
+
+    try { localStorage.setItem("pawbridge_lang", lang); } catch (e) {}
+  }
+
+  function initialLang() {
+    var q = new URLSearchParams(location.search).get("lang");
+    if (q === "en" || q === "es") return q;
+    try {
+      var saved = localStorage.getItem("pawbridge_lang");
+      if (saved === "en" || saved === "es") return saved;
+    } catch (e) {}
+    // L'anglais UNIQUEMENT si le navigateur est réglé en anglais.
+    // Tout le reste — français, russe, ukrainien, allemand, arabe… —
+    // reçoit l'espagnol : c'est un service espagnol, dans une ville
+    // espagnole, et quelqu'un qui vit ici comprend l'espagnol bien plus
+    // souvent que l'anglais. Le sélecteur ES/EN reste là pour les autres.
+    var list = (navigator.languages && navigator.languages.length)
+      ? navigator.languages
+      : [navigator.language || "es"];
+    for (var i = 0; i < list.length; i++) {
+      var base = String(list[i]).toLowerCase().split("-")[0];
+      if (base === "es") return "es";
+      if (base === "en") return "en";
+    }
+    return "es";
+  }
+
+  document.querySelectorAll(".lang button").forEach(function (b) {
+    b.addEventListener("click", function () { apply(b.dataset.lang); });
+  });
+
+  apply(initialLang());
+
+  // ==================================================================
+  // FORMULAIRE DE CANDIDATURE
+  // ==================================================================
 
   document.getElementById("services").addEventListener("change", function (e) {
     if (e.target.type === "checkbox") e.target.closest(".chip").classList.toggle("on", e.target.checked);
@@ -418,12 +642,12 @@
     var services = [].slice.call(document.querySelectorAll("#services input:checked")).map(function (c) { return c.value; });
     if (services.length === 0) {
       msg.className = "msg err";
-      msg.textContent = "Selecciona al menos un servicio.";
+      msg.textContent = t("js.pickService");
       return;
     }
 
     btn.disabled = true;
-    btn.textContent = "Enviando…";
+    btn.textContent = t("js.sending");
 
     try {
       var res = await fetch(API + "/api/applications", {
@@ -444,19 +668,22 @@
 
       if (res.ok) {
         msg.className = "msg ok";
-        msg.textContent = data.message || "Hemos recibido tu candidatura.";
+        // En anglais on n'affiche pas le message du serveur, qui est en
+        // espagnol : mieux vaut notre propre phrase que deux langues
+        // mélangées dans la même page.
+        msg.textContent = lang === "en" ? t("js.ok") : (data.message || t("js.ok"));
         document.getElementById("f").reset();
         [].forEach.call(document.querySelectorAll(".chip"), function (c) { c.classList.remove("on"); });
       } else {
         msg.className = "msg err";
-        msg.textContent = data.error || "No hemos podido enviar tu candidatura.";
+        msg.textContent = (lang === "es" && data.error) ? data.error : t("js.failed");
       }
     } catch (err) {
       msg.className = "msg err";
-      msg.textContent = "Sin conexión con el servidor. Escríbenos a contact@pawbridge.es.";
+      msg.textContent = t("js.offline");
     } finally {
       btn.disabled = false;
-      btn.textContent = "Enviar candidatura";
+      btn.textContent = t("form.submit");
     }
   });
 </script>
