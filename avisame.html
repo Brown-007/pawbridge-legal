@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Avísame — PawBridge</title>
+<meta name="description" content="Apúntate a la lista de espera de PawBridge y te avisamos cuando haya cuidadores profesionales disponibles en tu zona de Alicante.">
+<meta property="og:title" content="Avísame — PawBridge">
+<meta property="og:description" content="Te avisamos cuando haya cuidadores disponibles en tu zona.">
+<meta property="og:locale" content="es_ES">
+<link rel="canonical" href="https://pawbridge.es/avisame.html">
+<link rel="alternate" hreflang="es" href="https://pawbridge.es/avisame.html">
+<link rel="alternate" hreflang="en" href="https://pawbridge.es/avisame.html?lang=en">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body data-title-key="title.wait">
+
+<header>
+  <div class="wrap nav">
+    <div>
+      <div class="logo"><a href="index.html">Paw<span>Bridge</span></a></div>
+      <div class="tagline">Care. Connected.</div>
+    </div>
+    <nav>
+      <a href="index.html#servicios" data-i18n="nav.services">Servicios</a>
+      <a href="index.html#como" data-i18n="nav.how">Cómo funciona</a>
+      <a href="index.html#porque" data-i18n="nav.why">Por qué PawBridge</a>
+      <a href="avisame.html" aria-current="page" data-i18n="nav.waitlist">Avísame</a>
+      <a href="cuidadores.html" data-i18n="nav.work">Trabaja con nosotros</a>
+      <a href="faq.html" data-i18n="nav.faq">Preguntas</a>
+      <span class="lang" role="group" aria-label="Idioma / Language">
+        <button type="button" data-lang="es" aria-pressed="true">ES</button>
+        <button type="button" data-lang="en" aria-pressed="false">EN</button>
+      </span>
+    </nav>
+  </div>
+</header>
+
+<div class="hero compact">
+  <div class="wrap">
+    <h1 data-i18n="wait.title">¿Tienes una mascota?</h1>
+    <p data-i18n="wait.lead">Todavía estamos reuniendo a nuestros primeros cuidadores.
+       Déjanos tu correo y te avisamos en cuanto haya alguien disponible en tu zona.</p>
+  </div>
+</div>
+
+<section>
+  <div class="wrap split">
+    <div>
+      <ul class="check">
+        <li data-i18n-html="wait.b1"><strong>Sin compromiso.</strong> Solo un aviso cuando abramos en tu barrio.</li>
+        <li data-i18n-html="wait.b2"><strong>Sin publicidad.</strong> No usamos tu correo para nada más.</li>
+        <li data-i18n-html="wait.b3"><strong>Te das de baja cuando quieras</strong>, escribiendo a contact@pawbridge.es.</li>
+      </ul>
+
+      <p class="note" data-i18n="wait.honest">
+        Somos claros: no sabemos aún cuándo abriremos en cada zona. Depende de
+        encontrar cuidadores profesionales cerca de ti. Cuantas más personas
+        esperen en un barrio, antes buscamos allí.
+      </p>
+    </div>
+
+    <form id="w" novalidate>
+      <label for="wemail" data-i18n="wait.email">Correo electrónico *</label>
+      <input id="wemail" name="wemail" type="email" required autocomplete="email">
+
+      <label for="wcity" data-i18n="wait.city">Tu zona o barrio</label>
+      <input id="wcity" name="wcity" type="text" placeholder="Alicante centro, San Vicente…">
+
+      <label for="wanimal" data-i18n="wait.animal">¿Qué animal tienes?</label>
+      <select id="wanimal" name="wanimal">
+        <option value="" data-i18n="wait.select">Selecciona…</option>
+        <option value="perro" data-i18n="wait.dog">Perro</option>
+        <option value="gato" data-i18n="wait.cat">Gato</option>
+        <option value="otro" data-i18n="wait.other">Otro</option>
+      </select>
+
+      <label data-i18n="wait.services">¿Qué servicio te interesa?</label>
+      <div class="services" id="wservices">
+        <label class="chip"><input type="checkbox" value="promenade"><span data-i18n="form.svc1">Paseos</span></label>
+        <label class="chip"><input type="checkbox" value="visite"><span data-i18n="form.svc2">Visitas a domicilio</span></label>
+        <label class="chip"><input type="checkbox" value="garde"><span data-i18n="form.svc3">Guardería</span></label>
+        <label class="chip"><input type="checkbox" value="veterinaire"><span data-i18n="form.svc4">Acompañamiento veterinario</span></label>
+      </div>
+
+      <label class="consent" for="wconsent">
+        <input type="checkbox" id="wconsent">
+        <span data-i18n-html="wait.consent">Acepto que PawBridge guarde mi correo para avisarme cuando
+        el servicio esté disponible en mi zona, conforme a la
+        <a href="privacidad.html">política de privacidad</a>.</span>
+      </label>
+
+      <label class="hp" aria-hidden="true">No rellenar
+        <input type="text" id="wwebsite" name="wwebsite" tabindex="-1" autocomplete="off">
+      </label>
+
+      <button class="btn submit" type="submit" id="wsend" data-i18n="wait.submit">Avísame</button>
+      <div class="msg" id="wmsg" role="status"></div>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="fgrid">
+      <div>
+        <div class="logo" style="color:#fff">Paw<span>Bridge</span></div>
+        <div class="tagline">Care. Connected.</div>
+      </div>
+      <div>
+        <a href="mailto:contact@pawbridge.es">contact@pawbridge.es</a><br>
+        <a href="https://wa.me/34621001344">+34 621 00 13 44</a><br>
+        <span data-i18n="footer.city">Alicante, España</span>
+      </div>
+      <div>
+        <a href="privacidad.html" data-i18n="footer.privacy">Política de Privacidad</a><br>
+        <a href="terminos.html" data-i18n="footer.terms">Términos y Condiciones</a>
+        <div class="legal-note" data-i18n="footer.legalLang">Documentos legales disponibles únicamente en español.</div>
+      </div>
+    </div>
+    <div class="fbot" data-i18n="footer.disclaimer">
+      PawBridge es una plataforma de intermediación. Los servicios de cuidado
+      animal los prestan profesionales autónomos independientes.
+    </div>
+  </div>
+</footer>
+
+<script src="assets/i18n.js"></script>
+<script src="assets/forms.js"></script>
+</body>
+</html>

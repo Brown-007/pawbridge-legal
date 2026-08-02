@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Trabaja con nosotros — PawBridge</title>
+<meta name="description" content="Buscamos cuidadores profesionales en Alicante. Solo 10 % de comisión, Tarifa Fundador 0 % durante 6 meses, tú fijas tus tarifas y sin exclusividad.">
+<meta property="og:title" content="Trabaja con nosotros — PawBridge">
+<meta property="og:description" content="Buscamos a los primeros cuidadores profesionales de Alicante. 10 % de comisión, sin exclusividad.">
+<meta property="og:locale" content="es_ES">
+<link rel="canonical" href="https://pawbridge.es/cuidadores.html">
+<link rel="alternate" hreflang="es" href="https://pawbridge.es/cuidadores.html">
+<link rel="alternate" hreflang="en" href="https://pawbridge.es/cuidadores.html?lang=en">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body data-title-key="title.work">
+
+<header>
+  <div class="wrap nav">
+    <div>
+      <div class="logo"><a href="index.html">Paw<span>Bridge</span></a></div>
+      <div class="tagline">Care. Connected.</div>
+    </div>
+    <nav>
+      <a href="index.html#servicios" data-i18n="nav.services">Servicios</a>
+      <a href="index.html#como" data-i18n="nav.how">Cómo funciona</a>
+      <a href="index.html#porque" data-i18n="nav.why">Por qué PawBridge</a>
+      <a href="avisame.html" data-i18n="nav.waitlist">Avísame</a>
+      <a href="cuidadores.html" aria-current="page" data-i18n="nav.work">Trabaja con nosotros</a>
+      <a href="faq.html" data-i18n="nav.faq">Preguntas</a>
+      <span class="lang" role="group" aria-label="Idioma / Language">
+        <button type="button" data-lang="es" aria-pressed="true">ES</button>
+        <button type="button" data-lang="en" aria-pressed="false">EN</button>
+      </span>
+    </nav>
+  </div>
+</header>
+
+<div class="hero compact">
+  <div class="wrap">
+    <h1 data-i18n="work.title">Trabaja con nosotros</h1>
+    <p data-i18n="work.lead">Buscamos a los primeros cuidadores profesionales de Alicante.
+       Si cuidas de animales por oficio, esto te interesa.</p>
+  </div>
+</div>
+
+<section>
+  <div class="wrap split">
+    <div>
+      <ul class="check">
+        <li data-i18n-html="work.b1"><strong>Solo 10 % de comisión.</strong> Las grandes plataformas cobran un 15 % al cuidador y otro 15 % al cliente.</li>
+        <li data-i18n-html="work.b2"><strong>Tarifa Fundador: 0 % durante 6 meses</strong> para los 8 primeros cuidadores.</li>
+        <li data-i18n-html="work.b3"><strong>Tú fijas tus tarifas</strong> y tus horarios de trabajo.</li>
+        <li data-i18n-html="work.b4"><strong>Aceptas o rechazas libremente.</strong> Rechazar no tiene ninguna consecuencia.</li>
+        <li data-i18n-html="work.b5"><strong>Sin exclusividad.</strong> Puedes seguir trabajando en otras plataformas.</li>
+        <li data-i18n-html="work.b6"><strong>Cobro automático</strong> tras cada servicio, mediante Stripe.</li>
+      </ul>
+
+      <div style="background:var(--warn-bg);color:var(--warn-ink);padding:15px 17px;border-radius:11px;font-size:14px;"
+           data-i18n-html="work.req">
+        <strong>Requisitos</strong><br>
+        Alta como autónomo (o disposición a darte de alta), seguro de responsabilidad
+        civil profesional, experiencia demostrable con animales y residencia en
+        Alicante o alrededores.
+      </div>
+
+      <h3 style="margin-top:32px;font-size:17px" data-i18n="work.process">Cómo es la selección</h3>
+      <div class="steps" style="grid-template-columns:1fr;gap:14px;margin-top:16px">
+        <div class="step" style="padding-top:0;padding-left:44px">
+          <p data-i18n="work.p1">Rellenas este formulario</p>
+        </div>
+        <div class="step" style="padding-top:0;padding-left:44px">
+          <p data-i18n="work.p2">Llamada telefónica de 15 minutos</p>
+        </div>
+        <div class="step" style="padding-top:0;padding-left:44px">
+          <p data-i18n="work.p3">Entrevista presencial en Alicante, unos 40 minutos</p>
+        </div>
+        <div class="step" style="padding-top:0;padding-left:44px">
+          <p data-i18n="work.p4">Verificamos tu documentación y dos referencias</p>
+        </div>
+        <div class="step" style="padding-top:0;padding-left:44px">
+          <p data-i18n="work.p5">Alta en la plataforma y configuración del cobro, unos 20 minutos</p>
+        </div>
+      </div>
+    </div>
+
+    <form id="f" novalidate>
+      <label for="name" data-i18n="form.name">Nombre y apellidos *</label>
+      <input id="name" name="name" type="text" required autocomplete="name">
+
+      <label for="email" data-i18n="form.email">Correo electrónico *</label>
+      <input id="email" name="email" type="email" required autocomplete="email">
+
+      <label for="phone" data-i18n="form.phone">Teléfono</label>
+      <input id="phone" name="phone" type="tel" autocomplete="tel">
+
+      <label for="city" data-i18n="form.city">Ciudad o zona</label>
+      <input id="city" name="city" type="text" placeholder="Alicante, San Vicente…">
+
+      <label data-i18n="form.services">Servicios que quieres ofrecer *</label>
+      <div class="services" id="services">
+        <label class="chip"><input type="checkbox" value="promenade"><span data-i18n="form.svc1">Paseos</span></label>
+        <label class="chip"><input type="checkbox" value="visite"><span data-i18n="form.svc2">Visitas a domicilio</span></label>
+        <label class="chip"><input type="checkbox" value="garde"><span data-i18n="form.svc3">Guardería</span></label>
+        <label class="chip"><input type="checkbox" value="veterinaire"><span data-i18n="form.svc4">Acompañamiento veterinario</span></label>
+      </div>
+
+      <label for="isAutonomo" data-i18n="form.autonomo">¿Estás dado de alta como autónomo?</label>
+      <select id="isAutonomo" name="isAutonomo">
+        <option value="" data-i18n="form.select">Selecciona…</option>
+        <option value="si" data-i18n="form.opt1">Sí, ya estoy de alta</option>
+        <option value="dispuesto" data-i18n="form.opt2">No, pero estoy dispuesto/a</option>
+        <option value="no" data-i18n="form.opt3">No</option>
+      </select>
+
+      <label for="experience" data-i18n="form.experience">Tu experiencia con animales</label>
+      <textarea id="experience" name="experience" placeholder="Profesional, en protectora, como voluntario/a…"></textarea>
+
+      <label class="hp" aria-hidden="true">No rellenar
+        <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+      </label>
+
+      <button class="btn submit" type="submit" id="send" data-i18n="form.submit">Enviar candidatura</button>
+      <div class="msg" id="msg" role="status"></div>
+
+      <p class="note" data-i18n-html="form.note">Al enviar aceptas que tratemos tus datos para gestionar tu
+        candidatura, conforme a nuestra
+        <a href="privacidad.html">política de privacidad</a>.
+        Te respondemos en 48 horas.</p>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="fgrid">
+      <div>
+        <div class="logo" style="color:#fff">Paw<span>Bridge</span></div>
+        <div class="tagline">Care. Connected.</div>
+      </div>
+      <div>
+        <a href="mailto:contact@pawbridge.es">contact@pawbridge.es</a><br>
+        <a href="https://wa.me/34621001344">+34 621 00 13 44</a><br>
+        <span data-i18n="footer.city">Alicante, España</span>
+      </div>
+      <div>
+        <a href="privacidad.html" data-i18n="footer.privacy">Política de Privacidad</a><br>
+        <a href="terminos.html" data-i18n="footer.terms">Términos y Condiciones</a>
+        <div class="legal-note" data-i18n="footer.legalLang">Documentos legales disponibles únicamente en español.</div>
+      </div>
+    </div>
+    <div class="fbot" data-i18n="footer.disclaimer">
+      PawBridge es una plataforma de intermediación. Los servicios de cuidado
+      animal los prestan profesionales autónomos independientes.
+    </div>
+  </div>
+</footer>
+
+<script src="assets/i18n.js"></script>
+<script src="assets/forms.js"></script>
+</body>
+</html>
