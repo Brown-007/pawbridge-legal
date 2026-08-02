@@ -27,7 +27,10 @@ a{color:var(--teal-text);}
 header{background:var(--navy);color:#fff;padding:20px 0;}
 .nav{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;}
 .logo{font-weight:700;font-size:20px;letter-spacing:-.3px;}
-.logo a{color:#fff;text-decoration:none;}
+/* Le symbole précède le nom. `height` fixe et `width:auto` : c'est la
+   hauteur qui doit s'aligner sur le texte, pas la largeur. */
+.logo a{color:#fff;text-decoration:none;display:inline-flex;align-items:center;gap:9px;}
+.logo img{height:32px;width:auto;display:block;}
 .logo span{color:var(--teal);}
 .tagline{font-size:11.5px;color:var(--mint);letter-spacing:1.5px;text-transform:uppercase;}
 /* La barre de navigation garde la même allure quelle que soit la langue.
