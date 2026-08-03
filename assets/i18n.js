@@ -87,7 +87,7 @@ var EN = {
   "wait.honest":"To be straight with you: we don't yet know when we'll open in each area. It depends on finding professional sitters near you. The more people waiting in a neighbourhood, the sooner we look there.",
   "wait.email":"Email address *",
   "wait.city":"Your area or neighbourhood",
-  "wait.cityPlaceholder":"Alicante centre, San Vicente…",
+  "wait.cityPlaceholder":"Alicante centre, San Vicente, El Campello…",
   "wait.animal":"What pet do you have?",
   "wait.select":"Select…","wait.dog":"Dog","wait.cat":"Cat","wait.other":"Other",
   "wait.services":"Which service are you interested in?",
@@ -107,7 +107,7 @@ var EN = {
   "work.process":"How the selection works",
   "work.p1":"You fill in this form",
   "work.p2":"A 15-minute phone call",
-  "work.p3":"An in-person interview in Alicante, about 40 minutes",
+  "work.p3":"A video interview, about 40 minutes",
   "work.p4":"We check your documents and two references",
   "work.p5":"You join the platform and set up payouts, about 20 minutes",
 
@@ -120,14 +120,14 @@ var EN = {
   "form.experience":"Your experience with animals",
   "form.submit":"Send application",
   "form.note":"By sending this you agree that we process your data to handle your application, in line with our <a href=\"privacidad.html\">privacy policy</a>. We reply within 48 hours.",
-  "form.cityPlaceholder":"Alicante, San Vicente…",
+  "form.cityPlaceholder":"Alicante, San Vicente, El Campello…",
   "form.expPlaceholder":"Professional, at a shelter, as a volunteer…",
 
   /* --- Page questions --------------------------------------------- */
   "faq.title":"Frequently asked questions",
   "faq.lead":"The ones people actually ask, answered straight.",
   "faq.q1":"How do you choose your sitters?",
-  "faq.a1a":"Every application goes through a face-to-face interview. We require registration as self-employed (autónomo), a valid professional liability insurance policy, a DNI or NIE, and we check two references by phone.",
+  "faq.a1a":"Every application goes through a video interview. We require registration as self-employed (autónomo), a valid professional liability insurance policy, a DNI or NIE, and we check two references by phone.",
   "faq.a1b":"We're clear about what we <em>don't</em> do yet: we do not run systematic criminal record checks. We say so because we'd rather you knew than assumed.",
   "faq.q2":"What if my pet gets ill or hurt?",
   "faq.a2a":"The sitter must tell you immediately through the app and, if it's life-threatening, go to the vet. They cannot give any medication you haven't expressly authorised.",
@@ -141,7 +141,7 @@ var EN = {
   "faq.q6":"Does the app already exist?",
   "faq.a6":"It's built and in testing. It isn't on the App Store yet — we're gathering our first sitters before opening it to the public. Write to us if you'd like to be notified.",
   "faq.q7":"Do you cover the whole province?",
-  "faq.a7":"For now only Alicante city, Sant Joan and San Vicente del Raspeig. We'd rather cover a small area well than a large one badly.",
+  "faq.a7":"For now only Alicante city and its metropolitan area: Sant Joan, San Vicente del Raspeig, El Campello and Mutxamel. We'd rather cover a small area well than a large one badly.",
   "faq.q8":"What language does the app work in?",
   "faq.a8":"The app follows your phone's language automatically, in Spanish or English. Many of our clients and sitters aren't Spanish, and this felt like the least we could do.",
 
@@ -179,9 +179,9 @@ var ES_JS = {
   "js.wConsent":"Marca la casilla para que podamos guardar tu correo.",
   "js.wOk":"Te avisaremos en cuanto haya cuidadores disponibles en tu zona.",
   "js.wFailed":"No hemos podido añadirte a la lista.",
-  "form.cityPlaceholder":"Alicante, San Vicente…",
+  "form.cityPlaceholder":"Alicante, San Vicente, El Campello…",
   "form.expPlaceholder":"Profesional, en protectora, como voluntario/a…",
-  "wait.cityPlaceholder":"Alicante centro, San Vicente…"
+  "wait.cityPlaceholder":"Alicante centro, San Vicente, El Campello…"
 };
 
 /* Sauvegarde de la version espagnole avant toute substitution, pour
