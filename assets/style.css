@@ -33,33 +33,25 @@ a{color:var(--teal-text);}
 header{background:var(--navy);color:#fff;padding:20px 0;}
 .nav{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;}
 .logo{font-weight:700;font-size:20px;letter-spacing:-.3px;}
-/* Le symbole précède le nom.
-   Pas de `gap` ici : il s'appliquerait aussi entre « Paw » et
-   « Bridge » et couperait le mot en deux. La marge est portée par
-   l'image seule. */
-.logo a{color:#fff;text-decoration:none;}
-.logo a,.logo .mark{display:inline-flex;align-items:center;}
+/* Le logo est une image, plus une composition HTML. Le verrouillage
+   horizontal — symbole à gauche, nom à droite — est la déclinaison
+   prévue pour le web ; le nom n'est donc plus écrit en texte, il fait
+   partie du fichier. `alt` porte le nom pour les lecteurs d'écran.
 
-/* La version retenue est la tuile turquoise du logo fourni : c'est la
-   seule des trois déclinaisons lisible telle quelle sur fond marine.
-   Les deux autres (logo vertical, macaron rond) posent leur moitié
-   marine sur un fond marine — la silhouette humaine y disparaissait,
-   ce qui se voyait dans l'en-tête.
-
-   Le dessin n'est pas retouché : on recadre au ras de la tuile, rien
-   de plus. `border-radius` masque le blanc résiduel des quatre coins
-   — 23 % couvre le rayon mesuré (~21 %) avec une marge, quitte à
-   rogner un cheveu de turquoise, ce qui est invisible. */
-.logo img{height:34px;width:34px;border-radius:23%;display:block;margin-right:10px;}
-.logo .wm{white-space:nowrap;}
-/* Cibler `.logo span` colorait aussi les conteneurs `.wm` et `.mark`,
-   donc « Paw » passait en turquoise avec « Bridge » : dans l'en-tête le
-   nom entier était vert. Seul le span le plus interne porte l'accent. */
-.logo .wm > span{color:var(--teal);}
-.logo > span:not([class]){color:var(--teal);}
-/* Le pied de page porte le même symbole que l'en-tête, et garde la
-   signature que l'en-tête a laissée tomber. */
-footer .tagline{margin-top:6px;}
+   Le fichier utilisé est la version claire : symbole et « Paw » en
+   blanc, « Bridge » en turquoise. Le fichier d'origine est en marine
+   sur blanc — sur un en-tête marine, « Paw » et la silhouette humaine
+   disparaissaient purement et simplement. Seules les couleurs marine
+   ont été passées en blanc, le tracé n'a pas bougé d'un pixel ; c'est
+   la déclinaison « dark background » de la planche de marque. */
+.logo a{color:#fff;text-decoration:none;display:inline-block;}
+.logo img{height:38px;width:auto;display:block;}
+/* La signature est portée par le HTML, pas par l'image : à 38 px de
+   haut, « Care. Connected. » ne ferait que 4 px et deviendrait une
+   bavure grise. Elle reste donc en texte, et seulement en pied de
+   page — l'en-tête s'en passe. */
+footer .logo img{height:44px;}
+footer .tagline{margin-top:8px;}
 .tagline{font-size:11.5px;color:var(--mint);letter-spacing:1.5px;text-transform:uppercase;}
 /* La barre de navigation garde la même allure quelle que soit la langue.
    `nowrap` empêche un libellé de se couper en deux, et l'espacement est
