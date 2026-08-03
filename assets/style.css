@@ -6,14 +6,20 @@
    page aurait embarqué sa propre copie de ces règles : au premier
    changement de couleur, trois pages sur quatre auraient divergé.
 
-   Palette officielle de la charte. Le turquoise ne porte jamais de
-   texte : blanc sur #00B894 ne donne que 2,54:1, très en dessous des
-   4,5:1 exigés par la WCAG. Le texte des boutons turquoise est en
-   marine — 6,86:1.
+   Palette relevée directement dans le logo fourni, pixel par pixel :
+   le marine #012038 est celui du « Paw », le turquoise #00A694 celui
+   du « Bridge ». Les valeurs précédentes (#0D1B2A / #00B894) avaient
+   été choisies avant que le logo n'existe et ne correspondaient à
+   rien ; le logo est désormais la référence, pas l'inverse.
+
+   Le turquoise ne porte jamais de texte : blanc sur #00A694 ne donne
+   que 2,74:1, très en dessous des 4,5:1 exigés par la WCAG. Le texte
+   des boutons turquoise est en marine — 5,44:1. Pour du turquoise sur
+   fond blanc on utilise --teal-text, assombri à 4,89:1.
    ==================================================================== */
 
 :root{
-  --navy:#0D1B2A; --navy-light:#1B2F45; --teal:#00B894; --teal-text:#00806A;
+  --navy:#012038; --navy-light:#123048; --teal:#00A694; --teal-text:#00806A;
   --mint:#A7F3D0; --paper:#F5F7FA; --grey:#6B7280; --line:#E3E8EF;
   --warn-bg:#FEF3C7; --warn-ink:#8A5300;
 }
@@ -27,18 +33,33 @@ a{color:var(--teal-text);}
 header{background:var(--navy);color:#fff;padding:20px 0;}
 .nav{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;}
 .logo{font-weight:700;font-size:20px;letter-spacing:-.3px;}
-/* Le symbole précède le nom. `height` fixe et `width:auto` : c'est la
-   hauteur qui doit s'aligner sur le texte, pas la largeur.
+/* Le symbole précède le nom.
    Pas de `gap` ici : il s'appliquerait aussi entre « Paw » et
    « Bridge » et couperait le mot en deux. La marge est portée par
    l'image seule. */
-.logo a{color:#fff;text-decoration:none;display:inline-flex;align-items:center;}
-.logo img{height:34px;width:auto;display:block;margin-right:10px;}
+.logo a{color:#fff;text-decoration:none;}
+.logo a,.logo .mark{display:inline-flex;align-items:center;}
+
+/* La version retenue est la tuile turquoise du logo fourni : c'est la
+   seule des trois déclinaisons lisible telle quelle sur fond marine.
+   Les deux autres (logo vertical, macaron rond) posent leur moitié
+   marine sur un fond marine — la silhouette humaine y disparaissait,
+   ce qui se voyait dans l'en-tête.
+
+   Le dessin n'est pas retouché : on recadre au ras de la tuile, rien
+   de plus. `border-radius` masque le blanc résiduel des quatre coins
+   — 23 % couvre le rayon mesuré (~21 %) avec une marge, quitte à
+   rogner un cheveu de turquoise, ce qui est invisible. */
+.logo img{height:34px;width:34px;border-radius:23%;display:block;margin-right:10px;}
 .logo .wm{white-space:nowrap;}
-.logo span{color:var(--teal);}
-/* Dans le pied de page, le logo reste purement typographique et la
-   signature l'accompagne. En en-tête, le symbole la remplace. */
-footer .tagline{margin-top:2px;}
+/* Cibler `.logo span` colorait aussi les conteneurs `.wm` et `.mark`,
+   donc « Paw » passait en turquoise avec « Bridge » : dans l'en-tête le
+   nom entier était vert. Seul le span le plus interne porte l'accent. */
+.logo .wm > span{color:var(--teal);}
+.logo > span:not([class]){color:var(--teal);}
+/* Le pied de page porte le même symbole que l'en-tête, et garde la
+   signature que l'en-tête a laissée tomber. */
+footer .tagline{margin-top:6px;}
 .tagline{font-size:11.5px;color:var(--mint);letter-spacing:1.5px;text-transform:uppercase;}
 /* La barre de navigation garde la même allure quelle que soit la langue.
    `nowrap` empêche un libellé de se couper en deux, et l'espacement est
