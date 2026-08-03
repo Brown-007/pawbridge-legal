@@ -45,14 +45,17 @@ header{background:var(--navy);color:#fff;padding:20px 0;}
    ont été passées en blanc, le tracé n'a pas bougé d'un pixel ; c'est
    la déclinaison « dark background » de la planche de marque. */
 .logo a{color:#fff;text-decoration:none;display:inline-block;}
-.logo img{height:38px;width:auto;display:block;}
-/* La signature est portée par le HTML, pas par l'image : à 38 px de
-   haut, « Care. Connected. » ne ferait que 4 px et deviendrait une
-   bavure grise. Elle reste donc en texte, et seulement en pied de
-   page — l'en-tête s'en passe. */
-footer .logo img{height:44px;}
-footer .tagline{margin-top:8px;}
-.tagline{font-size:11.5px;color:var(--mint);letter-spacing:1.5px;text-transform:uppercase;}
+/* « Care. Connected. » fait partie du logo officiel : la signature vient
+   du fichier, elle n'est plus retapée en HTML. Elle l'était avant, dans
+   une autre casse et une autre graisse que celle du logo — deux
+   typographies pour la même phrase, l'une sous l'autre.
+
+   D'où la taille : la signature occupe 10,7 % de la hauteur du bloc.
+   À 38 px elle tombait à 4 px et devenait une bavure grise ; à 48 px
+   elle en fait 5, soit 10 sur un écran Retina, et se lit. C'est la
+   raison de l'en-tête un peu plus haut qu'avant. */
+.logo img{height:48px;width:auto;display:block;}
+footer .logo img{height:60px;}
 /* La barre de navigation garde la même allure quelle que soit la langue.
    `nowrap` empêche un libellé de se couper en deux, et l'espacement est
    assez serré pour que les six entrées tiennent sur une ligne en
