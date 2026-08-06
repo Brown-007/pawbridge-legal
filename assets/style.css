@@ -219,3 +219,23 @@ footer a:hover{color:var(--mint);}
 .fgrid{display:flex;justify-content:space-between;gap:28px;flex-wrap:wrap;margin-bottom:26px;}
 .fbot{border-top:1px solid rgba(255,255,255,.12);padding-top:18px;font-size:12.5px;color:#8FA3B8;}
 .legal-note{margin-top:10px;font-size:12px;color:#8FA3B8;}
+
+/* --- Section application ------------------------------------------
+   Les badges de store ne sont montrés que si assets/store.js trouve
+   une URL. Sans URL, c'est le bloc « pas encore publiée » qui reste,
+   avec le renvoi vers la liste d'attente : un visiteur qui vient pour
+   l'application repart avec quelque chose à faire plutôt qu'avec une
+   déception. */
+#app .appwrap{max-width:640px;}
+#app .lead{margin-bottom:22px;}
+
+#store-badges{display:flex;gap:12px;flex-wrap:wrap;}
+.store{display:inline-flex;flex-direction:column;justify-content:center;
+       background:var(--navy);color:#fff;text-decoration:none;
+       padding:9px 20px;border-radius:11px;min-width:170px;}
+.store:hover{background:var(--navy-light);}
+.store-k{font-size:10.5px;letter-spacing:.4px;color:#C7D3DF;text-transform:uppercase;}
+.store-n{font-size:17px;font-weight:700;line-height:1.2;}
+
+.soon{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:20px 22px;}
+.soon p{margin:0 0 16px;font-size:14.5px;line-height:1.6;}

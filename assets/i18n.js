@@ -69,6 +69,11 @@ var EN = {
   "why.note":"On a one-hour walk at €12, the sitter keeps €10.80 with us against €10.20 on a large platform, and the client pays €13.20 instead of €13.80. Less commission for us, a better split for both.",
 
   /* Cartes qui mènent aux autres pages */
+  "app.title":"The app",
+  "app.lead":"Book in minutes, pick your time slot, pay only once a sitter accepts, and follow your service. In Spanish or English, depending on your phone.",
+  "app.getOn":"Download on",
+  "app.soon":"<strong>It isn't published yet.</strong> It's built and in testing: we're gathering our first sitters before opening it to the public. We'd rather open with people genuinely available than with an empty list.",
+  "app.notify":"Let me know when it's out",
   "go.title":"Where do you want to go?",
   "go.waitTitle":"I have a pet",
   "go.waitText":"Join the waiting list and we'll let you know when we open in your area.",

@@ -21,7 +21,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="icon" href="assets/img/favicon.png" sizes="64x64">
 <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
-<link rel="stylesheet" href="assets/style.css?v=2026-08-03g">
+<link rel="stylesheet" href="assets/style.css?v=2026-08-06">
 </head>
 <body data-title-key="title.home">
 
@@ -176,6 +176,44 @@
   </div>
 </section>
 
+<!-- Section application.
+     Les deux badges de store restent masqués tant qu'aucune URL n'est
+     renseignée dans assets/store.js. Annoncer un téléchargement qui
+     n'existe pas romprait la promesse au premier clic, et Apple comme
+     Google interdisent l'usage de leurs badges pour une application non
+     publiée — ce qui se retourne contre nous au moment de la validation.
+     Voir assets/store.js pour l'activation. -->
+<section id="app">
+  <div class="wrap">
+    <div class="appwrap">
+      <div>
+        <h2 data-i18n="app.title">La aplicación</h2>
+        <p class="lead" data-i18n="app.lead">Reserva en unos minutos, elige la franja horaria,
+           paga solo cuando un cuidador acepta, y sigue tu servicio. En español o en inglés,
+           según el idioma de tu teléfono.</p>
+
+        <div id="store-badges" hidden>
+          <a id="store-ios" class="store" href="#" hidden>
+            <span class="store-k" data-i18n="app.getOn">Descárgala en</span>
+            <span class="store-n">App Store</span>
+          </a>
+          <a id="store-android" class="store" href="#" hidden>
+            <span class="store-k" data-i18n="app.getOn">Descárgala en</span>
+            <span class="store-n">Google Play</span>
+          </a>
+        </div>
+
+        <div id="store-soon" class="soon">
+          <p data-i18n="app.soon"><strong>Todavía no está publicada.</strong> Está desarrollada
+             y en pruebas: estamos reuniendo a los primeros cuidadores antes de abrirla al
+             público. Preferimos abrir con gente de verdad disponible que con una lista vacía.</p>
+          <a class="btn" href="avisame.html" data-i18n="app.notify">Avísame cuando salga</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="alt">
   <div class="wrap">
     <h2 data-i18n="go.title">¿A dónde quieres ir?</h2>
@@ -223,7 +261,8 @@
   </div>
 </footer>
 
-<script src="assets/i18n.js?v=2026-08-03g"></script>
-<script src="assets/forms.js?v=2026-08-03g"></script>
+<script src="assets/store.js?v=2026-08-06"></script>
+<script src="assets/i18n.js?v=2026-08-06"></script>
+<script src="assets/forms.js?v=2026-08-06"></script>
 </body>
 </html>
