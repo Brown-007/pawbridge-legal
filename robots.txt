@@ -1,0 +1,11 @@
+# pawbridge.es
+#
+# Tout est ouvert : le site n'a que six pages, toutes publiques, et
+# aucune n'attend d'être cachée. Un robots.txt n'est pas un dispositif de
+# sécurité — il n'empêche personne d'ouvrir une adresse. Il sert à dire
+# où est le plan du site et à ne pas laisser les moteurs deviner.
+
+User-agent: *
+Allow: /
+
+Sitemap: https://pawbridge.es/sitemap.xml

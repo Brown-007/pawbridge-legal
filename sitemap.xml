@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Plan du site pawbridge.es — six pages, toutes en espagnol.
+
+  Les dates `lastmod` sont celles de la dernière modification RÉELLE du
+  contenu, pas la date du jour. Un plan de site qui prétend que tout a
+  changé hier finit par n'être plus relu : les moteurs comparent avec ce
+  qu'ils ont déjà vu, et une date fausse leur apprend à ignorer les
+  suivantes. À mettre à jour à la main quand une page change vraiment.
+
+  `priority` ne dit rien à Google du classement dans les résultats : il
+  n'indique que l'importance RELATIVE des pages entre elles, pour
+  l'ordre d'exploration.
+
+  Pas d'entrée `<xhtml:link hreflang="en">` : la version anglaise n'est
+  pas une page distincte, c'est le même document traduit côté navigateur
+  par assets/i18n.js. Un moteur ne verrait qu'une adresse en double.
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <url>
+    <loc>https://pawbridge.es/</loc>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- La page qui compte aujourd'hui : c'est là qu'arrivent Instagram,
+       Facebook, Milanuncios et le QR des flyers. -->
+  <url>
+    <loc>https://pawbridge.es/cuidadores.html</loc>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://pawbridge.es/avisame.html</loc>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://pawbridge.es/faq.html</loc>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://pawbridge.es/privacidad.html</loc>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+
+  <url>
+    <loc>https://pawbridge.es/terminos.html</loc>
+    <lastmod>2026-08-02</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+
+</urlset>
