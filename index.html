@@ -21,9 +21,10 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="icon" href="assets/img/favicon.png" sizes="64x64">
 <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
-<link rel="stylesheet" href="assets/style.css?v=2026-08-06">
+<link rel="stylesheet" href="assets/style.css?v=2026-08-10h">
 </head>
 <body data-title-key="title.home">
+<a class="skip" href="#contenido">Ir al contenido</a>
 
 <header>
   <div class="wrap nav">
@@ -47,11 +48,14 @@
 
 <div class="hero img" style="background-image:url('assets/img/hero-home.jpg')">
   <div class="wrap">
+    <p class="eyebrow" data-i18n="eyebrow.home">Alicante y alrededores</p>
     <h1 data-i18n-html="hero.title">Cuidado de mascotas<br>en Alicante</h1>
     <p data-i18n="hero.lead">Conectamos a dueños de mascotas con cuidadores profesionales independientes
        de la ciudad. Reserva en unos minutos, paga de forma segura, sigue tu servicio.</p>
-    <a class="btn" href="avisame.html" data-i18n="hero.cta1">Tengo una mascota</a>
-    <a class="btn btn-ghost" href="cuidadores.html" data-i18n="hero.cta2">Quiero ser cuidador</a>
+    <div class="actions">
+      <a class="btn" href="avisame.html" data-i18n="hero.cta1">Tengo una mascota</a>
+      <a class="btn btn-ghost" href="cuidadores.html" data-i18n="hero.cta2">Quiero ser cuidador</a>
+    </div>
   </div>
 </div>
 
@@ -61,28 +65,28 @@
     <p class="lead" data-i18n="services.lead">Cada cuidador fija sus propias tarifas. Los precios mostrados son
        orientativos e incluyen el IVA.</p>
     <div class="grid">
-      <div class="card">
+      <div class="card reveal">
         <figure><img src="assets/img/svc-paseos.jpg" width="760" height="490" loading="lazy"
                      alt="Cuidadora paseando a dos perros por un parque de Alicante"></figure>
         <h3 data-i18n="svc1.title">Paseos</h3>
         <p data-i18n="svc1.text">Paseos individuales adaptados a la rutina de tu perro.</p>
         <span class="price" data-i18n="svc1.price">desde 13,20 € · 1 h</span>
       </div>
-      <div class="card">
+      <div class="card reveal">
         <figure><img src="assets/img/svc-visitas.jpg" width="760" height="490" loading="lazy"
                      alt="Cuidador preparando la comida de un perro en la cocina"></figure>
         <h3 data-i18n="svc2.title">Visitas a domicilio</h3>
         <p data-i18n="svc2.text">Comida, agua, arenero, medicación y compañía en tu casa.</p>
         <span class="price" data-i18n="svc2.price">desde 16,50 € · 30 min</span>
       </div>
-      <div class="card">
+      <div class="card reveal">
         <figure><img src="assets/img/svc-guarderia.jpg" width="760" height="490" loading="lazy"
                      alt="Cuidadora jugando con un perro en el salón de una casa"></figure>
         <h3 data-i18n="svc3.title">Guardería y alojamiento</h3>
         <p data-i18n="svc3.text">Tu mascota cuidada durante el día o mientras viajas.</p>
         <span class="price" data-i18n="svc3.price">desde 19,80 € · por día</span>
       </div>
-      <div class="card">
+      <div class="card reveal">
         <figure><img src="assets/img/svc-veterinario.jpg" width="760" height="490" loading="lazy"
                      alt="Cuidador con un perro en brazos hablando con la veterinaria"></figure>
         <h3 data-i18n="svc4.title">Acompañamiento veterinario</h3>
@@ -98,25 +102,25 @@
     <h2 data-i18n="how.title">Cómo funciona</h2>
     <p class="lead" data-i18n="how.lead">Sin llamadas, sin esperas, sin sorpresas en el precio.</p>
     <div class="steps">
-      <div class="step">
+      <div class="step reveal">
         <h3 data-i18n="step1.title">Eliges servicio y horario</h3>
         <p data-i18n="step1.text">Solo se muestran las franjas en las que hay un cuidador realmente libre.</p>
       </div>
-      <div class="step">
+      <div class="step reveal">
         <h3 data-i18n="step2.title">Un cuidador acepta</h3>
         <p data-i18n="step2.text">Tiene 10 minutos para responder. Si no puede, la solicitud pasa a otro profesional.</p>
       </div>
-      <div class="step">
+      <div class="step reveal">
         <h3 data-i18n="step3.title">Pagas solo entonces</h3>
         <p data-i18n="step3.text">El enlace de pago se genera después de la aceptación. Nunca pagas por un servicio sin confirmar.</p>
       </div>
-      <div class="step">
+      <div class="step reveal">
         <h3 data-i18n="step4.title">El cuidador realiza el servicio</h3>
         <p data-i18n="step4.text">Recibes el detalle al finalizar y puedes valorar la experiencia.</p>
       </div>
     </div>
 
-    <figure class="wide">
+    <figure class="wide reveal">
       <img src="assets/img/como-entrega.jpg" width="980" height="515" loading="lazy"
            alt="Una dueña entrega la correa de su perro al cuidador en la puerta de casa">
       <figcaption data-i18n="how.caption">Imagen ilustrativa. La entrega se hace en tu portal, a la hora que hayas elegido.</figcaption>
@@ -214,21 +218,21 @@
   </div>
 </section>
 
-<section class="alt">
+<section id="contenido" class="alt">
   <div class="wrap">
     <h2 data-i18n="go.title">¿A dónde quieres ir?</h2>
     <div class="grid" style="margin-top:26px">
-      <a class="card" href="avisame.html">
+      <a class="card reveal" href="avisame.html">
         <h3 data-i18n="go.waitTitle">Tengo una mascota</h3>
         <p data-i18n="go.waitText">Apúntate a la lista de espera y te avisamos cuando abramos en tu zona.</p>
         <span class="more" data-i18n="go.more">Seguir →</span>
       </a>
-      <a class="card" href="cuidadores.html">
+      <a class="card reveal" href="cuidadores.html">
         <h3 data-i18n="go.workTitle">Quiero ser cuidador</h3>
         <p data-i18n="go.workText">10 % de comisión, tú fijas tus tarifas, sin exclusividad.</p>
         <span class="more" data-i18n="go.more">Seguir →</span>
       </a>
-      <a class="card" href="faq.html">
+      <a class="card reveal" href="faq.html">
         <h3 data-i18n="go.faqTitle">Preguntas</h3>
         <p data-i18n="go.faqText">Cómo elegimos a los cuidadores, quién tiene tus llaves, cuándo se te cobra.</p>
         <span class="more" data-i18n="go.more">Seguir →</span>
@@ -261,8 +265,9 @@
   </div>
 </footer>
 
-<script src="assets/store.js?v=2026-08-06"></script>
-<script src="assets/i18n.js?v=2026-08-06"></script>
-<script src="assets/forms.js?v=2026-08-06"></script>
+<script src="assets/store.js?v=2026-08-10h"></script>
+<script src="assets/i18n.js?v=2026-08-10h"></script>
+<script src="assets/forms.js?v=2026-08-10h"></script>
+<script src="assets/motion.js?v=2026-08-10h"></script>
 </body>
 </html>

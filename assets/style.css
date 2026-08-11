@@ -2,9 +2,9 @@
    PawBridge — feuille de style commune
    ====================================================================
 
-   Un seul fichier pour les quatre pages. Avant le découpage, chaque
-   page aurait embarqué sa propre copie de ces règles : au premier
-   changement de couleur, trois pages sur quatre auraient divergé.
+   Un seul fichier pour les six pages. Avant le découpage, chaque page
+   aurait embarqué sa propre copie de ces règles : au premier changement
+   de couleur, cinq pages sur six auraient divergé.
 
    Palette relevée directement dans le logo fourni, pixel par pixel :
    le marine #012038 est celui du « Paw », le turquoise #00A694 celui
@@ -16,22 +16,122 @@
    que 2,74:1, très en dessous des 4,5:1 exigés par la WCAG. Le texte
    des boutons turquoise est en marine — 5,44:1. Pour du turquoise sur
    fond blanc on utilise --teal-text, assombri à 4,89:1.
+
+   --------------------------------------------------------------------
+   Révision du 10 août 2026 — la mise en forme, pas la marque.
+
+   Aucune couleur de marque n'a changé. Ce qui change, c'est la
+   discipline : une échelle typographique et une échelle d'espacement
+   au lieu de valeurs choisies au cas par cas, des états de survol et
+   de focus cohérents, et un mouvement discret.
+
+   Le parti pris est celui d'un artisanat sobre — la rigueur d'un site
+   d'outil comme expo.dev, sans son fond noir ni ses effets. PawBridge
+   demande à quelqu'un de confier ses clés et son chien : le site doit
+   inspirer le sérieux, pas l'esbroufe. Pas de dégradé animé, pas de
+   verre dépoli, pas de lueur.
+
+   Deux corrections au passage :
+   - le voile du hero utilisait rgba(13,27,42), l'ANCIEN marine, pas
+     celui du logo. Deux marines cohabitaient sans qu'on le voie ;
+   - les champs de formulaire faisaient `outline:none` en ne changeant
+     que la couleur de bordure. Au clavier, on ne savait plus où on
+     était. Il y a maintenant un vrai anneau de focus partout.
    ==================================================================== */
 
 :root{
+  /* --- Marque : inchangée -------------------------------------- */
   --navy:#012038; --navy-light:#123048; --teal:#00A694; --teal-text:#00806A;
   --mint:#A7F3D0; --paper:#F5F7FA; --grey:#6B7280; --line:#E3E8EF;
+  /* Turquoise assombri pour porter du texte SUR MENTHE. --teal-text est
+     calibré sur fond blanc (4,89:1) ; sur la menthe il retombe à 3,81:1
+     et ne passe plus. Mesuré, pas estimé. */
+  --teal-deep:#00675C;
   --warn-bg:#FEF3C7; --warn-ink:#8A5300;
+
+  /* Le marine en composantes, pour composer des voiles translucides
+     sans réécrire le triplet à la main — c'est en le réécrivant qu'on
+     s'était trompé de marine. */
+  --navy-rgb:1,32,56;
+
+  /* --- Échelle typographique ------------------------------------
+     Fluide entre mobile et bureau : `clamp` évite les paliers brutaux
+     aux points de rupture et supprime la moitié des règles @media.
+     Le rapport est d'environ 1,25 — assez pour hiérarchiser, assez
+     serré pour rester sobre. */
+  --t-display:clamp(2rem, 1.35rem + 2.6vw, 3.25rem);
+  --t-h1:clamp(1.75rem, 1.3rem + 1.8vw, 2.5rem);
+  --t-h2:clamp(1.5rem, 1.25rem + 1vw, 1.9rem);
+  --t-h3:1.0625rem;
+  --t-lead:clamp(1rem, .96rem + .25vw, 1.15rem);
+  --t-body:.96rem;
+  --t-small:.875rem;
+  --t-tiny:.78rem;
+
+  /* --- Échelle d'espacement -------------------------------------
+     Base 4 px. Les marges verticales des sections sont fluides : sur
+     un téléphone, 96 px de blanc entre deux sections font défiler
+     dans le vide. */
+  --s1:4px; --s2:8px; --s3:12px; --s4:16px; --s5:24px;
+  --s6:32px; --s7:48px; --s8:64px;
+  --s-section:clamp(56px, 4vw + 40px, 96px);
+
+  /* --- Rayons ---------------------------------------------------- */
+  --r-sm:10px; --r-md:14px; --r-lg:18px; --r-pill:999px;
+
+  /* --- Ombres ----------------------------------------------------
+     Très basses et très diffuses. Une ombre qui se voit est une ombre
+     ratée : elle doit seulement décoller l'élément de la page. */
+  --sh-1:0 1px 2px rgba(var(--navy-rgb),.05);
+  --sh-2:0 4px 16px -4px rgba(var(--navy-rgb),.10), 0 1px 3px rgba(var(--navy-rgb),.05);
+
+  /* --- Mouvement --------------------------------------------------
+     Une seule durée et une seule courbe pour tout le site. Deux
+     transitions de vitesses différentes sur la même page se voient
+     immédiatement, sans qu'on sache dire pourquoi. */
+  --dur:.18s;
+  --ease:cubic-bezier(.2,.7,.3,1);
 }
+
 *{box-sizing:border-box;}
+
+html{scroll-behavior:smooth;}
+/* Les ancres du menu ne doivent pas passer sous l'en-tête collant. */
+html{scroll-padding-top:96px;}
+
 body{margin:0;font-family:Poppins,-apple-system,BlinkMacSystemFont,sans-serif;
-     color:var(--navy);line-height:1.65;background:#fff;}
-.wrap{max-width:1040px;margin:0 auto;padding:0 24px;}
+     color:var(--navy);line-height:1.65;background:#fff;
+     font-size:var(--t-body);
+     -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
+.wrap{max-width:1080px;margin:0 auto;padding:0 var(--s5);}
 a{color:var(--teal-text);}
 
+/* Anneau de focus commun à tout ce qui se pilote au clavier.
+   `:focus-visible` ne l'affiche qu'au clavier : à la souris, rien ne
+   change, ce qui évite l'effet « bordure qui reste allumée » après un
+   clic. C'est une exigence WCAG 2.4.7, pas une préférence. */
+:where(a,button,input,select,textarea,summary,[tabindex]):focus-visible{
+  outline:2px solid var(--teal);
+  outline-offset:2px;
+  border-radius:var(--s1);
+}
+
+/* Lien d'évitement : au clavier, on saute la navigation d'un coup.
+   Invisible tant qu'il n'a pas le focus. */
+.skip{position:absolute;left:-9999px;background:#fff;color:var(--navy);
+      padding:var(--s3) var(--s4);border-radius:var(--r-sm);font-weight:600;z-index:50;}
+.skip:focus{left:var(--s4);top:var(--s4);}
+
 /* --- En-tête et navigation ---------------------------------------- */
-header{background:var(--navy);color:#fff;padding:20px 0;}
-.nav{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;}
+/* L'en-tête suit le défilement : sur une page longue, revenir en haut
+   pour changer de page ou de langue est un aller-retour inutile.
+   Le fond reste opaque — un voile flouté sur une photo rend le menu
+   illisible dès que la photo est claire. */
+header{background:var(--navy);color:#fff;padding:var(--s4) 0;
+       position:sticky;top:0;z-index:20;
+       transition:box-shadow var(--dur) var(--ease), padding var(--dur) var(--ease);}
+header.stuck{box-shadow:0 6px 24px -8px rgba(var(--navy-rgb),.55);padding:var(--s3) 0;}
+.nav{display:flex;justify-content:space-between;align-items:center;gap:var(--s4);flex-wrap:wrap;}
 .logo{font-weight:700;font-size:20px;letter-spacing:-.3px;}
 /* Le logo est une image, plus une composition HTML. Le verrouillage
    horizontal — symbole à gauche, nom à droite — est la déclinaison
@@ -54,32 +154,43 @@ header{background:var(--navy);color:#fff;padding:20px 0;}
    À 38 px elle tombait à 4 px et devenait une bavure grise ; à 48 px
    elle en fait 5, soit 10 sur un écran Retina, et se lit. C'est la
    raison de l'en-tête un peu plus haut qu'avant. */
-.logo img{height:48px;width:auto;display:block;}
+.logo img{height:48px;width:auto;display:block;transition:height var(--dur) var(--ease);}
+header.stuck .logo img{height:40px;}
 footer .logo img{height:60px;}
 /* La barre de navigation garde la même allure quelle que soit la langue.
    `nowrap` empêche un libellé de se couper en deux, et l'espacement est
    assez serré pour que les six entrées tiennent sur une ligne en
    espagnol comme en anglais. */
-.nav nav{display:flex;align-items:center;flex-wrap:wrap;justify-content:flex-end;row-gap:8px;}
-.nav a{color:#fff;text-decoration:none;font-size:14px;font-weight:500;margin-left:20px;white-space:nowrap;}
+.nav nav{display:flex;align-items:center;flex-wrap:wrap;justify-content:flex-end;row-gap:var(--s2);}
+.nav a{color:#fff;text-decoration:none;font-size:var(--t-small);font-weight:500;
+       margin-left:var(--s5);white-space:nowrap;position:relative;
+       transition:color var(--dur) var(--ease);}
 .nav a:hover{color:var(--mint);}
 /* La page courante reste signalée : sur un site multipage, ne pas
-   savoir où l'on est fait revenir en arrière inutilement. */
-.nav a[aria-current=page]{color:var(--mint);border-bottom:2px solid var(--teal);padding-bottom:2px;}
+   savoir où l'on est fait revenir en arrière inutilement.
+   Le trait est un pseudo-élément et non une bordure : il peut ainsi
+   grandir depuis le centre au survol sans décaler le texte. */
+.nav a::after{content:"";position:absolute;left:50%;right:50%;bottom:-6px;height:2px;
+              background:var(--teal);border-radius:2px;
+              transition:left var(--dur) var(--ease), right var(--dur) var(--ease);}
+.nav a:hover::after{left:0;right:0;}
+.nav a[aria-current=page]{color:var(--mint);}
+.nav a[aria-current=page]::after{left:0;right:0;}
 
 /* Sélecteur de langue. Discret, mais toujours visible : la détection
    automatique se trompe souvent — un Espagnol dont le navigateur est
    en anglais doit pouvoir revenir en un clic. */
-.lang{display:inline-flex;border:1px solid rgba(255,255,255,.28);border-radius:20px;
-      overflow:hidden;margin-left:22px;vertical-align:middle;}
+.lang{display:inline-flex;border:1px solid rgba(255,255,255,.28);border-radius:var(--r-pill);
+      overflow:hidden;margin-left:var(--s5);vertical-align:middle;}
 .lang button{background:transparent;border:0;color:#C7D3DF;font-family:inherit;
-      font-size:12.5px;font-weight:600;padding:5px 12px;cursor:pointer;letter-spacing:.5px;}
+      font-size:var(--t-tiny);font-weight:600;padding:5px var(--s3);cursor:pointer;letter-spacing:.5px;
+      transition:background var(--dur) var(--ease), color var(--dur) var(--ease);}
 .lang button[aria-pressed=true]{background:var(--teal);color:var(--navy);}
-.lang button:hover:not([aria-pressed=true]){color:#fff;}
+.lang button:hover:not([aria-pressed=true]){color:#fff;background:rgba(255,255,255,.10);}
 
 /* --- Hero et boutons ---------------------------------------------- */
-.hero{background:var(--navy);color:#fff;padding:56px 0 72px;}
-.hero.compact{padding:44px 0 48px;}
+.hero{background:var(--navy);color:#fff;padding:var(--s8) 0 clamp(64px,6vw,88px);}
+.hero.compact{padding:var(--s7) 0 var(--s7);}
 
 /* Hero illustré.
  *
@@ -89,7 +200,12 @@ footer .logo img{height:60px;}
  * marqué à gauche où se trouve le texte.
  *
  * Le fondu vers le bas raccorde l'image à la section suivante, ce qui
- * évite la coupure nette d'une photo posée telle quelle. */
+ * évite la coupure nette d'une photo posée telle quelle.
+ *
+ * ⚠️ Les voiles utilisaient rgba(13,27,42), c'est-à-dire #0D1B2A —
+ * l'ancien marine, choisi avant que le logo n'existe. Le fond plein
+ * était donc en #012038 et le voile par-dessus dans une autre couleur.
+ * Ils passent tous par --navy-rgb désormais. */
 /* `no-repeat` explicite : sans lui, si `background-size` venait à ne pas
    s'appliquer — feuille de style en cache, règle écrasée — l'image se
    répéterait en mosaïque au lieu d'être simplement mal cadrée. */
@@ -97,128 +213,200 @@ footer .logo img{height:60px;}
           background-size:cover;background-repeat:no-repeat;
           background-position:center 38%;overflow:hidden;}
 .hero.img::before{content:"";position:absolute;inset:0;
-  background:linear-gradient(100deg, rgba(13,27,42,.94) 0%, rgba(13,27,42,.82) 42%,
-                                     rgba(13,27,42,.45) 72%, rgba(13,27,42,.30) 100%);}
-.hero.img::after{content:"";position:absolute;left:0;right:0;bottom:0;height:90px;
-  background:linear-gradient(to bottom, rgba(13,27,42,0), rgba(13,27,42,.55));}
+  background:linear-gradient(100deg, rgba(var(--navy-rgb),.94) 0%, rgba(var(--navy-rgb),.84) 42%,
+                                     rgba(var(--navy-rgb),.48) 72%, rgba(var(--navy-rgb),.32) 100%);}
+.hero.img::after{content:"";position:absolute;left:0;right:0;bottom:0;height:110px;
+  background:linear-gradient(to bottom, rgba(var(--navy-rgb),0), rgba(var(--navy-rgb),.60));}
 .hero.img .wrap{position:relative;z-index:1;}
 @media(max-width:820px){
   /* Sur mobile le texte occupe toute la largeur : le dégradé doit couvrir
      uniformément, sinon la fin des lignes devient illisible. */
-  .hero.img::before{background:linear-gradient(180deg, rgba(13,27,42,.90), rgba(13,27,42,.80));}
+  .hero.img::before{background:linear-gradient(180deg, rgba(var(--navy-rgb),.90), rgba(var(--navy-rgb),.82));}
 }
-.hero h1{font-size:42px;line-height:1.2;margin:0 0 16px;font-weight:700;letter-spacing:-1px;}
-.hero.compact h1{font-size:34px;}
-.hero p{font-size:18px;color:#C7D3DF;max-width:600px;margin:0 0 28px;}
+
+/* Surtitre. Emprunté aux sites d'outils : une ligne courte, en
+   majuscules espacées, qui situe la page avant que le titre ne la
+   nomme. Le turquoise ne porte pas ce texte — c'est la menthe, à
+   9,1:1 sur le marine. */
+.eyebrow{display:inline-flex;align-items:center;gap:var(--s2);
+         font-size:var(--t-tiny);font-weight:600;letter-spacing:.12em;text-transform:uppercase;
+         color:var(--mint);margin:0 0 var(--s4);}
+.eyebrow::before{content:"";width:22px;height:2px;background:var(--teal);border-radius:2px;}
+section .eyebrow{color:var(--teal-text);}
+
+.hero h1{font-size:var(--t-display);line-height:1.08;margin:0 0 var(--s4);
+         font-weight:700;letter-spacing:-.025em;
+         /* `balance` répartit les mots entre les lignes au lieu de
+            laisser un mot seul en bas. Ignoré par les navigateurs qui
+            ne le connaissent pas — aucun risque. */
+         text-wrap:balance;}
+.hero.compact h1{font-size:var(--t-h1);}
+.hero p{font-size:var(--t-lead);color:#C7D3DF;max-width:38em;margin:0 0 var(--s6);
+        text-wrap:pretty;}
 .hero.compact p{margin-bottom:0;}
-.btn{display:inline-block;background:var(--teal);color:var(--navy);text-decoration:none;
-     font-weight:600;font-size:15.5px;padding:14px 28px;border-radius:12px;border:0;cursor:pointer;
-     font-family:inherit;}
-.btn:hover{background:var(--mint);}
-.btn-ghost{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.35);margin-left:10px;}
-.btn-ghost:hover{background:rgba(255,255,255,.08);}
+.hero .actions{display:flex;flex-wrap:wrap;gap:var(--s3);align-items:center;}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;
+     background:var(--teal);color:var(--navy);text-decoration:none;
+     font-weight:600;font-size:.97rem;padding:14px 26px;border-radius:var(--r-md);border:0;
+     cursor:pointer;font-family:inherit;line-height:1.2;
+     transition:background var(--dur) var(--ease), transform var(--dur) var(--ease),
+                box-shadow var(--dur) var(--ease);}
+.btn:hover{background:var(--mint);transform:translateY(-1px);box-shadow:var(--sh-2);}
+/* Le bouton redescend au clic : sans retour tactile, on ne sait pas si
+   l'appui a été pris en compte, et on appuie deux fois. */
+.btn:active{transform:translateY(0);box-shadow:none;}
+.btn-ghost{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.35);}
+.btn-ghost:hover{background:rgba(255,255,255,.10);border-color:rgba(255,255,255,.6);box-shadow:none;}
 
 /* --- Sections ------------------------------------------------------ */
-section{padding:64px 0;}
-h2{font-size:28px;margin:0 0 10px;font-weight:700;letter-spacing:-.5px;}
-.lead{color:var(--grey);font-size:16px;margin:0 0 36px;max-width:620px;}
+section{padding:var(--s-section) 0;}
+h2{font-size:var(--t-h2);margin:0 0 var(--s3);font-weight:700;letter-spacing:-.02em;
+   text-wrap:balance;}
+.lead{color:var(--grey);font-size:var(--t-lead);margin:0 0 var(--s7);max-width:42em;
+      text-wrap:pretty;}
 .alt{background:var(--paper);}
+/* Une ligne fine sépare deux sections de même fond. Sans elle, deux
+   blocs blancs successifs se lisent comme un seul bloc trop long. */
+section + section:not(.alt){border-top:1px solid var(--line);}
+.alt + section:not(.alt),section.alt{border-top:0;}
 
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;}
-.card{border:1px solid var(--line);border-radius:14px;padding:22px;}
-.card h3{margin:0 0 6px;font-size:16.5px;font-weight:600;}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:var(--s5);}
+.card{border:1px solid var(--line);border-radius:var(--r-lg);padding:var(--s5);
+      background:#fff;transition:border-color var(--dur) var(--ease),
+                                 box-shadow var(--dur) var(--ease),
+                                 transform var(--dur) var(--ease);}
+.card h3{margin:0 0 var(--s2);font-size:var(--t-h3);font-weight:600;letter-spacing:-.01em;}
 /* Photo en tête de carte. `aspect-ratio` réserve la place avant même que
    l'image arrive : sans lui, toute la grille sursaute au chargement. */
-.card figure{margin:-22px -22px 16px;}
+.card figure{margin:calc(var(--s5) * -1) calc(var(--s5) * -1) var(--s4);overflow:hidden;
+             border-radius:calc(var(--r-lg) - 1px) calc(var(--r-lg) - 1px) 0 0;}
 .card figure img{width:100%;aspect-ratio:76/49;object-fit:cover;display:block;
-                 border-radius:13px 13px 0 0;background:var(--paper);}
+                 background:var(--paper);
+                 transition:transform .4s var(--ease);}
+a.card:hover figure img{transform:scale(1.03);}
 
 /* Illustration pleine largeur au sein d'une section. */
-figure.wide{margin:32px 0 0;}
+figure.wide{margin:var(--s6) 0 0;}
 figure.wide img{width:100%;aspect-ratio:196/103;object-fit:cover;display:block;
-                border-radius:16px;background:var(--paper);}
-figure figcaption{font-size:12.5px;color:var(--grey);margin-top:8px;}
-.card p{margin:0;color:var(--grey);font-size:14.5px;}
-.price{display:block;margin-top:12px;font-weight:700;font-size:15px;color:var(--teal-text);}
+                border-radius:var(--r-lg);background:var(--paper);}
+figure figcaption{font-size:var(--t-tiny);color:var(--grey);margin-top:var(--s2);}
+.card p{margin:0;color:var(--grey);font-size:var(--t-small);}
+.price{display:block;margin-top:var(--s3);font-weight:700;font-size:.95rem;color:var(--teal-text);}
 
 /* Cartes cliquables qui mènent aux autres pages. */
-a.card{text-decoration:none;color:inherit;display:block;transition:border-color .15s;}
-a.card:hover{border-color:var(--teal);}
-a.card .more{display:inline-block;margin-top:12px;font-weight:600;font-size:14px;color:var(--teal-text);}
+a.card{text-decoration:none;color:inherit;display:block;}
+a.card:hover{border-color:var(--teal);box-shadow:var(--sh-2);transform:translateY(-2px);}
+a.card .more{display:inline-flex;align-items:center;gap:6px;margin-top:var(--s3);
+             font-weight:600;font-size:var(--t-small);color:var(--teal-text);}
+/* La flèche avance au survol. C'est le seul mouvement décoratif du
+   site, et il indique une direction réelle : la carte est un lien. */
+a.card .more::after{content:"→";transition:transform var(--dur) var(--ease);}
+a.card:hover .more::after{transform:translateX(4px);}
 
-.steps{counter-reset:s;display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:22px;}
-.step{position:relative;padding-top:44px;}
+.steps{counter-reset:s;display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:var(--s6);}
+.step{position:relative;padding-top:var(--s7);}
 .step::before{counter-increment:s;content:counter(s);position:absolute;top:0;left:0;
-  width:32px;height:32px;border-radius:50%;background:var(--teal);color:var(--navy);
-  font-weight:700;font-size:15px;display:flex;align-items:center;justify-content:center;}
-.step h3{margin:0 0 6px;font-size:16px;font-weight:600;}
-.step p{margin:0;color:var(--grey);font-size:14.5px;}
+  width:34px;height:34px;border-radius:50%;background:var(--teal);color:var(--navy);
+  font-weight:700;font-size:.95rem;display:flex;align-items:center;justify-content:center;}
+.step h3{margin:0 0 var(--s2);font-size:var(--t-h3);font-weight:600;}
+.step p{margin:0;color:var(--grey);font-size:var(--t-small);}
 
-.split{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:start;}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:var(--s7);align-items:start;}
 @media(max-width:820px){
-  .split{grid-template-columns:1fr;gap:32px;}
-  .hero h1{font-size:32px;} .hero.compact h1{font-size:27px;}
-  .btn-ghost{margin-left:0;margin-top:10px;}
-  .nav nav{display:flex;flex-wrap:wrap;gap:4px;}
-  .nav a{margin-left:0;margin-right:16px;} .lang{margin-left:0;margin-top:10px;}
+  .split{grid-template-columns:1fr;gap:var(--s6);}
+  .btn-ghost{margin-left:0;}
+  .nav nav{display:flex;flex-wrap:wrap;gap:var(--s1);}
+  .nav a{margin-left:0;margin-right:var(--s4);} .lang{margin-left:0;margin-top:var(--s3);}
+  /* L'en-tête collant mange trop d'écran sur un téléphone tenu à
+     l'horizontale, et la navigation y passe à deux lignes. */
+  header{position:static;}
 }
 
-ul.check{list-style:none;padding:0;margin:0 0 26px;}
-ul.check li{position:relative;padding-left:26px;margin-bottom:11px;font-size:15px;}
-ul.check li::before{content:"";position:absolute;left:0;top:8px;width:8px;height:8px;
-  border-radius:50%;background:var(--teal);}
+ul.check{list-style:none;padding:0;margin:0 0 var(--s6);}
+ul.check li{position:relative;padding-left:28px;margin-bottom:var(--s3);font-size:.97rem;}
+ul.check li::before{content:"";position:absolute;left:0;top:9px;width:9px;height:9px;
+  border-radius:50%;background:var(--teal);
+  box-shadow:0 0 0 4px rgba(0,166,148,.14);}
 
 /* --- Formulaires --------------------------------------------------- */
-form{border:1px solid var(--line);border-radius:16px;padding:26px;background:#fff;}
-label{display:block;font-size:13px;font-weight:600;margin:16px 0 6px;}
+form{border:1px solid var(--line);border-radius:var(--r-lg);padding:var(--s6);background:#fff;
+     box-shadow:var(--sh-1);}
+label{display:block;font-size:var(--t-small);font-weight:600;margin:var(--s5) 0 var(--s2);}
 label:first-of-type{margin-top:0;}
 input[type=text],input[type=email],input[type=tel],select,textarea{
-  width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:10px;
-  font-family:inherit;font-size:15px;color:var(--navy);background:#fff;}
-input:focus,select:focus,textarea:focus{outline:none;border-color:var(--teal);}
-textarea{min-height:88px;resize:vertical;}
-.services{display:flex;flex-wrap:wrap;gap:8px;}
-.chip{border:1px solid var(--line);border-radius:20px;padding:8px 15px;font-size:14px;cursor:pointer;user-select:none;}
+  width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:var(--r-sm);
+  font-family:inherit;font-size:.97rem;color:var(--navy);background:#fff;
+  transition:border-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease);}
+input::placeholder,textarea::placeholder{color:#9AA5B1;}
+/* Le focus était signalé par la seule couleur de bordure, avec
+   `outline:none`. Au clavier, sur un formulaire de dix champs, on
+   perdait sa place. L'anneau est maintenant explicite — et la couleur
+   seule n'est jamais le seul indice, comme l'exige la WCAG 1.4.1. */
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--teal);
+  box-shadow:0 0 0 3px rgba(0,166,148,.20);}
+textarea{min-height:96px;resize:vertical;}
+.services{display:flex;flex-wrap:wrap;gap:var(--s2);}
+.chip{border:1px solid var(--line);border-radius:var(--r-pill);padding:9px 16px;
+      font-size:var(--t-small);cursor:pointer;user-select:none;
+      transition:background var(--dur) var(--ease), border-color var(--dur) var(--ease);}
+.chip:hover{border-color:var(--teal);}
 .chip input{position:absolute;opacity:0;pointer-events:none;}
+/* La pastille cochée ne se distingue pas que par sa couleur : elle
+   gagne aussi une graisse et une coche. Un daltonien doit pouvoir
+   lire son propre formulaire. */
 .chip.on{background:var(--mint);border-color:var(--teal);font-weight:600;}
+.chip.on::before{content:"✓ ";font-weight:700;color:var(--teal-deep);}
+/* Le piège à robots. Hors écran plutôt que `display:none` : certains
+   robots ignorent les champs masqués, aucun n'ignore ceux-là. */
 .hp{position:absolute;left:-9999px;}
-.submit{width:100%;margin-top:22px;padding:15px;}
-.note{font-size:12.5px;color:var(--grey);margin-top:14px;line-height:1.55;}
-.msg{margin-top:16px;padding:14px 16px;border-radius:10px;font-size:14.5px;display:none;}
+.submit{width:100%;margin-top:var(--s6);padding:15px;}
+.note{font-size:var(--t-tiny);color:var(--grey);margin-top:var(--s4);line-height:1.55;}
+.msg{margin-top:var(--s4);padding:14px 16px;border-radius:var(--r-sm);font-size:var(--t-small);display:none;}
 .msg.ok{background:var(--mint);color:#065F46;display:block;}
 .msg.err{background:#FEE2E2;color:#991B1B;display:block;}
 
 /* Case de consentement : le RGPD exige un acte positif, jamais une
    case pré-cochée. D'où un vrai checkbox, aligné avec son texte. */
-label.consent{display:flex;gap:10px;align-items:flex-start;margin-top:18px;
-              font-weight:400;font-size:13px;color:var(--grey);line-height:1.5;cursor:pointer;}
-label.consent input{width:17px;height:17px;flex:0 0 auto;margin-top:1px;accent-color:var(--teal);}
+label.consent{display:flex;gap:var(--s3);align-items:flex-start;margin-top:var(--s5);
+              font-weight:400;font-size:var(--t-small);color:var(--grey);line-height:1.5;cursor:pointer;}
+label.consent input{width:18px;height:18px;flex:0 0 auto;margin-top:1px;accent-color:var(--teal);}
 
 /* --- Tableau comparatif -------------------------------------------- */
-table.compare{width:100%;border-collapse:collapse;font-size:15px;max-width:760px;}
-table.compare th,table.compare td{text-align:left;padding:13px 14px;border-bottom:1px solid var(--line);}
-table.compare th{font-weight:600;font-size:14px;color:var(--grey);}
+table.compare{width:100%;border-collapse:collapse;font-size:.97rem;max-width:780px;}
+table.compare th,table.compare td{text-align:left;padding:14px;border-bottom:1px solid var(--line);}
+table.compare th{font-weight:600;font-size:var(--t-small);color:var(--grey);}
 table.compare th:nth-child(2){color:var(--teal-text);}
-table.compare td:first-child{color:var(--grey);font-size:14.5px;}
+table.compare td:first-child{color:var(--grey);font-size:var(--t-small);}
 table.compare td.good{font-weight:600;}
+table.compare tr:hover td{background:var(--paper);}
 
 /* --- Questions fréquentes ------------------------------------------ */
-.faq{max-width:760px;}
-details{border:1px solid var(--line);border-radius:12px;padding:0;margin-bottom:10px;background:#fff;}
-summary{cursor:pointer;padding:16px 18px;font-weight:600;font-size:15.5px;list-style:none;}
+.faq{max-width:780px;}
+details{border:1px solid var(--line);border-radius:var(--r-md);padding:0;margin-bottom:var(--s3);
+        background:#fff;transition:border-color var(--dur) var(--ease),
+                                   box-shadow var(--dur) var(--ease);}
+details:hover{border-color:#CBD5E1;}
+details[open]{border-color:var(--teal);box-shadow:var(--sh-1);}
+summary{cursor:pointer;padding:var(--s4) var(--s5);font-weight:600;font-size:.97rem;
+        list-style:none;display:flex;justify-content:space-between;align-items:center;gap:var(--s4);}
 summary::-webkit-details-marker{display:none;}
-summary::after{content:"+";float:right;color:var(--teal);font-weight:700;font-size:19px;line-height:1;}
-details[open] summary::after{content:"–";}
-details p{margin:0 18px 14px;color:var(--grey);font-size:14.5px;}
+/* Le signe pivote au lieu de changer de caractère : « + » et « – »
+   n'ont pas la même largeur, et le titre sautait d'un pixel à
+   l'ouverture. */
+summary::after{content:"+";color:var(--teal-text);font-weight:700;font-size:1.25rem;line-height:1;
+               flex:0 0 auto;transition:transform var(--dur) var(--ease);}
+details[open] summary::after{transform:rotate(45deg);}
+details p{margin:0 var(--s5) var(--s4);color:var(--grey);font-size:var(--t-small);}
 details p:first-of-type{margin-top:-2px;}
 
 /* --- Pied de page --------------------------------------------------- */
-footer{background:var(--navy);color:#C7D3DF;padding:44px 0 32px;font-size:14px;}
-footer a{color:#fff;text-decoration:none;}
+footer{background:var(--navy);color:#C7D3DF;padding:var(--s7) 0 var(--s6);font-size:var(--t-small);}
+footer a{color:#fff;text-decoration:none;transition:color var(--dur) var(--ease);}
 footer a:hover{color:var(--mint);}
-.fgrid{display:flex;justify-content:space-between;gap:28px;flex-wrap:wrap;margin-bottom:26px;}
-.fbot{border-top:1px solid rgba(255,255,255,.12);padding-top:18px;font-size:12.5px;color:#8FA3B8;}
-.legal-note{margin-top:10px;font-size:12px;color:#8FA3B8;}
+.fgrid{display:flex;justify-content:space-between;gap:var(--s6);flex-wrap:wrap;margin-bottom:var(--s6);}
+.fbot{border-top:1px solid rgba(255,255,255,.14);padding-top:var(--s5);font-size:var(--t-tiny);color:#8FA3B8;}
+.legal-note{margin-top:var(--s3);font-size:var(--t-tiny);color:#8FA3B8;}
 
 /* --- Section application ------------------------------------------
    Les badges de store ne sont montrés que si assets/store.js trouve
@@ -226,16 +414,65 @@ footer a:hover{color:var(--mint);}
    avec le renvoi vers la liste d'attente : un visiteur qui vient pour
    l'application repart avec quelque chose à faire plutôt qu'avec une
    déception. */
-#app .appwrap{max-width:640px;}
-#app .lead{margin-bottom:22px;}
+#app .appwrap{max-width:660px;}
+#app .lead{margin-bottom:var(--s5);}
 
-#store-badges{display:flex;gap:12px;flex-wrap:wrap;}
+#store-badges{display:flex;gap:var(--s3);flex-wrap:wrap;}
 .store{display:inline-flex;flex-direction:column;justify-content:center;
        background:var(--navy);color:#fff;text-decoration:none;
-       padding:9px 20px;border-radius:11px;min-width:170px;}
-.store:hover{background:var(--navy-light);}
-.store-k{font-size:10.5px;letter-spacing:.4px;color:#C7D3DF;text-transform:uppercase;}
-.store-n{font-size:17px;font-weight:700;line-height:1.2;}
+       padding:10px 20px;border-radius:var(--r-md);min-width:176px;
+       transition:background var(--dur) var(--ease), transform var(--dur) var(--ease);}
+.store:hover{background:var(--navy-light);transform:translateY(-1px);}
+.store-k{font-size:var(--t-tiny);letter-spacing:.4px;color:#C7D3DF;text-transform:uppercase;}
+.store-n{font-size:1.05rem;font-weight:700;line-height:1.2;}
 
-.soon{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:20px 22px;}
-.soon p{margin:0 0 16px;font-size:14.5px;line-height:1.6;}
+.soon{background:var(--paper);border:1px solid var(--line);border-radius:var(--r-lg);
+      padding:var(--s5) var(--s6);}
+.soon p{margin:0 0 var(--s4);font-size:var(--t-small);line-height:1.6;}
+
+/* --- Apparition au défilement ---------------------------------------
+   Les blocs montent de quelques pixels en apparaissant. C'est
+   `assets/motion.js` qui pose la classe `.in` quand l'élément entre
+   dans l'écran.
+
+   Deux garde-fous, et ils comptent plus que l'effet :
+
+   1. L'état de départ n'est appliqué que si le navigateur sait faire
+      l'animation ET que le script s'est chargé (`.js-motion` sur
+      <html>). Sans JavaScript, ou si le fichier manque, tout reste
+      visible. Une animation d'apparition qui échoue en masquant le
+      contenu est une page blanche.
+   2. `prefers-reduced-motion` coupe tout. Le mouvement déclenche des
+      nausées et des migraines chez certaines personnes ; ce réglage
+      est une demande médicale, pas une préférence esthétique. */
+.js-motion .reveal{opacity:0;transform:translateY(14px);
+                   transition:opacity .5s var(--ease), transform .5s var(--ease);}
+.js-motion .reveal.in{opacity:1;transform:none;}
+/* Décalage en cascade dans une grille : les cartes arrivent l'une
+   après l'autre plutôt qu'en bloc. */
+.js-motion .reveal:nth-child(2){transition-delay:.06s;}
+.js-motion .reveal:nth-child(3){transition-delay:.12s;}
+.js-motion .reveal:nth-child(4){transition-delay:.18s;}
+
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto;}
+  *,*::before,*::after{
+    animation-duration:.01ms !important;animation-iteration-count:1 !important;
+    transition-duration:.01ms !important;scroll-behavior:auto !important;}
+  .js-motion .reveal{opacity:1;transform:none;}
+}
+
+/* --- Impression -----------------------------------------------------
+   Les pages légales sont imprimées et jointes à des dossiers. Sans ces
+   règles, on sort un en-tête marine plein d'encre et des liens dont on
+   ne peut pas lire l'adresse. */
+@media print{
+  header,footer,.lang,.skip,#store-badges{display:none !important;}
+  body{color:#000;font-size:11pt;}
+  .wrap{max-width:none;padding:0;}
+  section{padding:12pt 0;border:0;}
+  a{color:#000;text-decoration:underline;}
+  a[href^="http"]::after{content:" (" attr(href) ")";font-size:9pt;color:#444;}
+  details{border:0;} details p{margin-left:0;}
+  .card,form{box-shadow:none;border:1px solid #bbb;break-inside:avoid;}
+}

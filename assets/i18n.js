@@ -25,6 +25,12 @@
 var API = "https://pawbridge-backend-server.onrender.com";
 
 var EN = {
+  /* --- Surtitres des heros ---------------------------------------- */
+  // Courts et de longueur comparable dans les deux langues : le surtitre
+  // est sur une seule ligne, il ne doit pas passer à deux en anglais.
+  "eyebrow.home":"Alicante and around","eyebrow.work":"We're hiring",
+  "eyebrow.wait":"Waiting list","eyebrow.faq":"No spin",
+
   /* --- Navigation, commune à toutes les pages --------------------- */
   // Libellés courts, et de longueur comparable dans les deux langues :
   // en espagnol, « Por qué PawBridge » et « Trabaja con nosotros »
