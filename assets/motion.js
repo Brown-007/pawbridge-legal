@@ -83,4 +83,48 @@
   };
   accroche();
   window.addEventListener("scroll", accroche, { passive: true });
+
+  // ------------------------------------------------------------------
+  // Barre d'action collante — page de recrutement
+  // ------------------------------------------------------------------
+  //
+  // Sur cuidadores.html, le formulaire est en bas de page. Quelqu'un qui
+  // lit les avantages, descend, hésite, puis remonte relire les
+  // conditions n'a plus aucun bouton sous les yeux. La barre revient
+  // dès qu'il a dépassé le formulaire.
+  //
+  // Trois règles, dans cet ordre :
+  //
+  // 1. Elle ne s'affiche JAMAIS au chargement. Une barre présente
+  //    d'emblée mange le bas de l'écran avant d'avoir servi à quoi que
+  //    ce soit — et sur un téléphone, c'est un dixième de la page.
+  // 2. Elle disparaît quand le formulaire est visible. Proposer
+  //    « postule » alors que le formulaire est sous les yeux est une
+  //    redite, et le bouton flottant recouvre le dernier champ.
+  // 3. Elle disparaît définitivement après un envoi réussi. Continuer à
+  //    réclamer une candidature à quelqu'un qui vient de la déposer
+  //    donne l'impression que rien n'a été reçu.
+  var barre = document.querySelector(".dock");
+  var cible = document.querySelector("#f");
+  if (!barre || !cible) return;
+
+  var envoye = false;
+  cible.addEventListener("submit", function () {
+    // forms.js décide du succès réel ; on se contente de ne plus
+    // insister dès que la personne a cliqué sur Envoyer.
+    envoye = true;
+    barre.classList.remove("on");
+  });
+
+  var surveille = new IntersectionObserver(
+    function (entrees) {
+      if (envoye) return;
+      var formulaireVisible = entrees[0].isIntersecting;
+      // Dépassé le formulaire, et pas encore revenu dessus.
+      var plusBas = entrees[0].boundingClientRect.top < 0;
+      barre.classList.toggle("on", !formulaireVisible && plusBas);
+    },
+    { threshold: 0 }
+  );
+  surveille.observe(cible);
 })();

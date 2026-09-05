@@ -430,6 +430,89 @@ footer a:hover{color:var(--mint);}
       padding:var(--s5) var(--s6);}
 .soon p{margin:0 0 var(--s4);font-size:var(--t-small);line-height:1.6;}
 
+/* ====================================================================
+   Trois motifs repris de 21st.dev — réécrits en CSS
+   ====================================================================
+   Le catalogue est en React + Tailwind + framer-motion : rien n'est
+   copiable tel quel ici, et rien n'y tourne dans une app React Native.
+   Ce qui se reprend, c'est l'idée. Ces trois-là n'ajoutent aucune
+   dépendance et aucun JavaScript, sauf la barre collante.
+
+   Volontairement écartés : Testimonials, Stats & KPIs et Clients — les
+   trois catégories les plus fournies du catalogue. Elles supposent des
+   clients, des chiffres et des partenaires. PawBridge n'en a aucun, et
+   les inventer serait le mensonge qu'on vient de retirer de la base.
+   -------------------------------------------------------------------- */
+
+/* 1. Fond texturé ----------------------------------------------------
+   Une trame de points, dessinée en dégradé radial — aucune image, donc
+   aucune requête et aucun poids. Très basse en opacité : elle doit se
+   deviner, pas se voir. Elle donne au marine une matière au lieu d'un
+   aplat, ce qui est tout l'effet recherché.
+
+   Posée en `background-image` sur le hero PLEIN uniquement. Sur le
+   hero photo, il y a déjà une image : deux textures superposées font
+   sale. */
+.hero:not(.img){
+  background-image:
+    radial-gradient(rgba(255,255,255,.055) 1px, transparent 1px),
+    radial-gradient(120% 80% at 15% 0%, rgba(0,166,148,.16), transparent 60%);
+  background-size:22px 22px, 100% 100%;
+}
+/* Sur les sections claires, la même trame en marine très dilué. */
+.alt.textured{
+  background-image:radial-gradient(rgba(var(--navy-rgb),.05) 1px, transparent 1px);
+  background-size:22px 22px;
+}
+
+/* 2. Bandeau d'annonce ------------------------------------------------
+   Une seule ligne, au-dessus du titre, pour une offre réelle et datée.
+   Elle ne dit que ce qui est vrai : la Tarifa Fundador existe, elle est
+   limitée à huit personnes, et il en reste huit.
+
+   Le compteur n'est PAS animé et ne se remplit pas tout seul. Un
+   chiffre qui monte à l'écran fait croire à une activité qui n'existe
+   pas encore. Il se met à jour à la main, ici, quand quelqu'un signe. */
+.annonce{display:inline-flex;align-items:center;gap:var(--s3);flex-wrap:wrap;
+         background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);
+         border-radius:var(--r-pill);padding:6px 6px 6px var(--s4);
+         font-size:var(--t-small);color:#fff;margin:0 0 var(--s5);
+         text-decoration:none;
+         transition:background var(--dur) var(--ease), border-color var(--dur) var(--ease);}
+a.annonce:hover{background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.35);}
+.annonce b{font-weight:600;}
+.annonce .pastille{background:var(--mint);color:var(--navy);font-weight:700;
+                   font-size:var(--t-tiny);padding:4px var(--s3);border-radius:var(--r-pill);
+                   white-space:nowrap;}
+
+/* 3. Barre d'action collante ------------------------------------------
+   Sur la page de recrutement, le formulaire est en bas. Un cuidador qui
+   lit les avantages, descend, hésite et remonte perd le bouton de vue.
+   La barre réapparaît dès qu'il a dépassé le formulaire.
+
+   Elle ne s'affiche QUE si le script la déclenche, et jamais avant
+   d'avoir défilé : une barre présente au chargement masque le contenu
+   sans avoir rien apporté. */
+.dock{position:fixed;left:0;right:0;bottom:0;z-index:30;
+      background:var(--navy);border-top:1px solid rgba(255,255,255,.14);
+      padding:var(--s3) 0;
+      transform:translateY(110%);
+      transition:transform .28s var(--ease);
+      /* Sur iPhone, la barre système mange le bas de l'écran. */
+      padding-bottom:calc(var(--s3) + env(safe-area-inset-bottom, 0px));}
+.dock.on{transform:translateY(0);}
+.dock .wrap{display:flex;align-items:center;justify-content:space-between;gap:var(--s4);}
+.dock p{margin:0;color:#C7D3DF;font-size:var(--t-small);}
+.dock p b{color:#fff;font-weight:600;}
+.dock .btn{padding:11px 20px;white-space:nowrap;}
+@media(max-width:560px){
+  /* Le texte disparaît avant le bouton : c'est le bouton qui compte. */
+  .dock p{display:none;}
+  .dock .wrap{justify-content:center;}
+  .dock .btn{width:100%;}
+}
+@media (prefers-reduced-motion: reduce){ .dock{transition:none;} }
+
 /* --- Apparition au défilement ---------------------------------------
    Les blocs montent de quelques pixels en apparaissant. C'est
    `assets/motion.js` qui pose la classe `.in` quand l'élément entre

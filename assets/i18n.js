@@ -25,6 +25,15 @@
 var API = "https://pawbridge-backend-server.onrender.com";
 
 var EN = {
+  /* --- Bandeau d'offre et barre d'action ------------------------- */
+  // « Quedan 8 plazas » se met à jour À LA MAIN, ici et dans le HTML,
+  // quand un cuidador signe. Jamais de compteur animé : un chiffre qui
+  // bouge tout seul fait croire à une activité qui n'existe pas encore.
+  "ann.title":"Founder rate · 0 % commission for 6 months",
+  "ann.left":"8 places left",
+  "dock.text":"<b>0 % commission</b> for 6 months, first 8 sitters.",
+  "dock.cta":"Apply now",
+
   /* --- Surtitres des heros ---------------------------------------- */
   // Courts et de longueur comparable dans les deux langues : le surtitre
   // est sur une seule ligne, il ne doit pas passer à deux en anglais.
