@@ -485,6 +485,21 @@ a.annonce:hover{background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.
                    font-size:var(--t-tiny);padding:4px var(--s3);border-radius:var(--r-pill);
                    white-space:nowrap;}
 
+/* annonce — petit écran : le texte passe à deux lignes et la pilule
+   devient une bulle informe. Sous 600 px on repasse à une carte aux
+   coins modérés, le texte à gauche, la pastille dessous. */
+@media(max-width:600px){
+  .annonce{border-radius:var(--r-md);padding:var(--s3) var(--s4);
+           flex-direction:column;align-items:flex-start;gap:var(--s2);}
+  .annonce b{line-height:1.35;}
+}
+
+/* Quand le navigateur traduit la page lui-même (Safari, Chrome), il
+   réécrit tout le texte pendant que nos animations tournent : ça
+   saccade. Google Translate pose `translated-ltr` sur <html> ; on
+   coupe alors les apparitions et on affiche tout d'un coup. */
+html.translated-ltr .reveal,html.translated-rtl .reveal{opacity:1 !important;transform:none !important;transition:none !important;}
+
 /* 3. Barre d'action collante ------------------------------------------
    Sur la page de recrutement, le formulaire est en bas. Un cuidador qui
    lit les avantages, descend, hésite et remonte perd le bouton de vue.

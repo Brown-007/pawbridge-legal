@@ -34,6 +34,10 @@
   var calme = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)");
   if (calme && calme.matches) return;
 
+  // Page traduite par le navigateur lui-même : il réécrit le texte en
+  // continu, nos animations saccadent par-dessus. On n'anime pas.
+  if (/translated-/.test(doc.className)) return;
+
   // Navigateur trop ancien pour IntersectionObserver : on ne masque
   // rien plutôt que de masquer sans pouvoir révéler.
   if (!("IntersectionObserver" in window)) return;
