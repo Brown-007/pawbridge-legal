@@ -291,7 +291,7 @@ a.card:hover figure img{transform:scale(1.03);}
    qu'on l'ait demandé. L'image d'attente fait le travail de la vignette.
    Pas de lecture automatique : une vidéo qui démarre seule, avec le son,
    fait fuir plus qu'elle ne retient. */
-figure.film{margin:0;max-width:900px;}
+figure.film{margin:var(--s6) 0 0;max-width:none;}
 figure.film video{width:100%;aspect-ratio:16/9;display:block;border-radius:var(--r-lg);
                   background:var(--navy);box-shadow:var(--sh-2);}
 figure.film figcaption{font-size:var(--t-tiny);color:var(--grey);margin-top:var(--s3);
