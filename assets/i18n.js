@@ -25,6 +25,11 @@
 var API = "https://pawbridge-backend-server.onrender.com";
 
 var EN = {
+  /* --- Vidéo --------------------------------------------------- */
+  "video.eyebrow":"In 50 seconds","video.title":"One bridge, two sides",
+  "video.lead":"What the owner sees, what the sitter sees, and how they meet.",
+  "video.caption":"Illustrative footage. The app is coming soon to the App Store and Google Play — meanwhile, join the waiting list.",
+
   /* --- Bandeau d'offre et barre d'action ------------------------- */
   // « Quedan 8 plazas » se met à jour À LA MAIN, ici et dans le HTML,
   // quand un cuidador signe. Jamais de compteur animé : un chiffre qui
