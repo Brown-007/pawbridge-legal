@@ -21,7 +21,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="icon" href="assets/img/favicon.png" sizes="64x64">
 <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
-<link rel="stylesheet" href="assets/style.css?v=2026-10-13b">
+<link rel="stylesheet" href="assets/style.css?v=2026-10-13c">
 </head>
 <body data-title-key="title.home">
 <a class="skip" href="#contenido">Ir al contenido</a>
@@ -121,9 +121,16 @@
     </div>
 
     <figure class="film wide reveal">
-      <video controls playsinline preload="none"
+      <!-- Deux fichiers, un seul visible : <source media> n'existe pas sur
+           <video>, seule la CSS peut choisir. preload="none" sur les deux :
+           celui qui est masqué ne coûte pas un octet. -->
+      <video class="film-h" controls playsinline preload="none"
              poster="assets/video/dos-lados-poster.jpg" width="1920" height="1080">
         <source src="assets/video/dos-lados.mp4" type="video/mp4">
+      </video>
+      <video class="film-v" controls playsinline preload="none"
+             poster="assets/video/dos-lados-9x16-poster.jpg" width="1080" height="1920">
+        <source src="assets/video/dos-lados-9x16.mp4" type="video/mp4">
       </video>
       <figcaption data-i18n="video.caption">Imágenes ilustrativas. La app llega pronto a App Store y Google Play — mientras tanto, apúntate a la lista de espera.</figcaption>
     </figure>
@@ -268,9 +275,9 @@
   </div>
 </footer>
 
-<script src="assets/store.js?v=2026-10-13b"></script>
-<script src="assets/i18n.js?v=2026-10-13b"></script>
-<script src="assets/forms.js?v=2026-10-13b"></script>
-<script src="assets/motion.js?v=2026-10-13b"></script>
+<script src="assets/store.js?v=2026-10-13c"></script>
+<script src="assets/i18n.js?v=2026-10-13c"></script>
+<script src="assets/forms.js?v=2026-10-13c"></script>
+<script src="assets/motion.js?v=2026-10-13c"></script>
 </body>
 </html>

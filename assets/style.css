@@ -292,8 +292,16 @@ a.card:hover figure img{transform:scale(1.03);}
    Pas de lecture automatique : une vidéo qui démarre seule, avec le son,
    fait fuir plus qu'elle ne retient. */
 figure.film{margin:var(--s6) 0 0;max-width:none;}
-figure.film video{width:100%;aspect-ratio:16/9;display:block;border-radius:var(--r-lg);
+figure.film video{width:100%;display:block;border-radius:var(--r-lg);
                   background:var(--navy);box-shadow:var(--sh-2);}
+/* Ordinateur et tablette : le 16:9. Téléphone : le 9:16, plus étroit
+   que l'écran pour ne pas occuper toute la hauteur d'un coup. */
+figure.film .film-h{aspect-ratio:16/9;}
+figure.film .film-v{display:none;aspect-ratio:9/16;max-width:360px;margin:0 auto;}
+@media(max-width:600px){
+  figure.film .film-h{display:none;}
+  figure.film .film-v{display:block;}
+}
 figure.film figcaption{font-size:var(--t-tiny);color:var(--grey);margin-top:var(--s3);
                        text-wrap:pretty;}
 
